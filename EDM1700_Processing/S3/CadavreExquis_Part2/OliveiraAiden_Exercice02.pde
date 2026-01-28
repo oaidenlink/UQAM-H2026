@@ -96,8 +96,24 @@ color capeFill = #17032C;   // couleur de la cape
 color capeAccent = #5E5886; // couleur des accents de la cape
 
 // variables du chandail
-color chandBack = #9FA6A7;
-color chandWhite = #FFFFFF;
+int chandArcPosX = 60;            // le width de l'arc (mal indiqué)
+int chandArcPosY = 50;            // le height de l'arc (mal indiqué)
+int chandRectPosY = 30;           // position Y du rectangle ("corps")
+int chandRectWidth = 80;          // largeur du corps
+int chandRectHeight = 120;        // hauteur du corps
+int chandRectRound = 10;          // coins arrondis
+int chandFroufrouPosHeight = 95;  // position Y des froufrous
+int chandFroufrouX = 60;          // largeur des froufrous
+int chandFroufrouY = 50;          // hauteur des froufrous
+int chandTieHeight = 60;          // position Y de la "cravatte" (rect blanc par dessus les froufrous)
+int chandTieX = 20;               // width de la cravatte
+int chandTieY = 80;               // height de la cravatte
+color chandWhite = #FFFFFF;       // couleur générale du corps (blanc)
+int chandColorFroufrou = 120;     // première couleur des froufrous
+
+// variables des mains
+
+// variables des souliers
 
 // CAPE (FOND) - - - - - - - - - - - - - - - - - - - - - - - - - - -
 noStroke();  // enlève la bordure
@@ -120,12 +136,27 @@ for (int i=0; i<=22; i+=1) {
 
 // CHANDAIL - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-noStroke();
-fill(chandBack);
-arc(width/2, height/2-80, 60, 50, radians(220),radians(320));
-fill(chandWhite);
+noStroke();  // enlève les bordures
+fill(chandWhite);  // ajout de la couleur
+arc(width/2, height/2-80, chandArcPosX, chandArcPosY, radians(220),radians(320));  // collet sur le dessus
+rectMode(CENTER);  // set le point centre au milieu du carré (au lieu du coin)
+rect(width/2, height/2-chandRectPosY, chandRectWidth, chandRectHeight, chandRectRound);  // rectangle qui sert de "corps"
+
+  // boucle qui permet de dupliquer les froufrous
+for (int i=0; i<=8; i++) {
+  fill(chandColorFroufrou);  // set la couleur du froufrous
+  arc(width/2, height/2-chandFroufrouPosHeight, chandFroufrouX, chandFroufrouY, radians(20), radians(160));  // créé le froufrou
+   chandFroufrouPosHeight -= 10;  // modifie la position Y du froufrou (le mets plus bas que le dernier)
+   chandColorFroufrou += 20;  // change la couleur d'un froufrou (le rends plus pale)
+}
+
+fill(chandWhite);  // set la couleur a blanc
+rect(width/2, height/2-chandTieHeight, chandTieX, chandTieY);  // création de la "cravatte" qui passe par dessus les froufrous
 
 // MAINS - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+fill(255);
+circle(
 
 // SOULIERS - - - - - - - - - - - - - - - - - - - - - - - - - - -
  
