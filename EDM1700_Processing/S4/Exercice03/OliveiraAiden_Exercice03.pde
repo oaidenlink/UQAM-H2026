@@ -106,7 +106,7 @@ void keyPressed() {          // lorsqu'une touche est enfoncé
       rectMode(CENTER);      // set le point centre au milieu du rect
       noStroke();            // enlève la stroke
       fill(bgColor);         // remplir le rect avec la couleur du fond
-                             // créer un cercle par dessus les dessins déjà fait ("vide" le canvas)
+                             // créer un rect par dessus les dessins déjà fait ("vide" le canvas)
       rect(posCanvaX+300, height/2, widthCanva+40, heightCanva+40);
     }
 }
