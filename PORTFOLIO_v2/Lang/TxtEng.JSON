@@ -56,7 +56,31 @@
         "accTwt": "Twitter / X",
         "accBehance": "Behance",
         "accDerivative": "Derivative",
-        "accSpaceHey": "SpaceHey"
+        "accSpaceHey": "SpaceHey",
+
+        "aboutMe": "Hi, I'm Estrela!",
+        "aboutDesc": "You can also call me by my middle name (and internet alias), Link! I'm a full time University student at UQAM learning about interactive media and other really fun mediums. I'm also a part-timer at a retail store (you can never outrun retail) and I make games on the side. A lot of stuff, I know... Tune in after my semester to see if I got around to finishing a game!",
+        "aboutStatus": "STATUS : Currently stu<span>dying</span> in University",
+        "aboutHobbies": "Hobbies",
+        "aboutCurrent": "Currently: ",
+        "aboutGames": "Video Games",
+        "aboutGamesCurrent": "NEO: The World Ends With You",
+        "aboutArt": "Art",
+        "aboutArtCurrent": "Drawing more fanart 'cause I'm obsessed (ft. my OCs)",
+        "aboutRead": "Reading",
+        "aboutReadCurrent": "The Way Of Kings by Brandon Sanderson",
+
+        "capabilities": "Capabilities",
+        "capabDesc": "Here's a few of my talents in different programs!",
+        "capabUnity": "Unity + VS Code",
+        "capabClip": "Clip Studio Paint",
+        "capabPhotoshop": "Photoshop",
+        "capabAE": "After Effects",
+        "capabPremiere": "Premiere Pro"
+    },
+
+    "art" : {
+        "art": "Art projects"
     },
 
     "footer" : {
