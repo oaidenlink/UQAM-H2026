@@ -80,7 +80,24 @@
     },
 
     "art" : {
-        "art": "Art projects"
+        "art": "Art projects",
+        "schoolTitle": "School Projects",
+        "schoolProjectA": "Title of the projects ///////////",
+        "schoolProjectALink" : "link to the page (if needed)",
+        "schoolProjectAMedia" : "media (art, digital anim, 3d)",
+        "personalTitle": "Personal Projects",
+        "personalProjectA" : "Name",
+        "personalProjectAMedia" : "art, digit, anim, 3d, 2d"
+    },
+
+    "games" : {
+        "games": "Game projects",
+        "gameLesAstres": "Les Astres de nos Complices",
+        "gameLesAstresDesc": "..........",
+        "gameLesAstresLink" : "itch.io fiefdsmkdnwj",
+        "gameOneTitle": "Name of the game",
+        "gameOneDesc": "descri^ption",
+        "gameOneLink": "link to the itch page"
     },
 
     "footer" : {
