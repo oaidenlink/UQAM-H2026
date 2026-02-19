@@ -107,6 +107,23 @@ void draw() {
  la gauche (négative) alors on veut soustraire une valeur (ex: -0.5). Même chose
  pour la vitesse du cercle Y et le haut/bas.
  
- Astuce : il est aussi possible d'utiliser une autre opération pour le faire 
+ Astuce : il est aussi possible d'utiliser une autre opération pour le faire
  en 2 lignes de code sans les conditions.. L'as tu ?
+ 
+ Optionnel :
+ 
+ Ajouter du texte pour indiquer quand on a perdu et ce qu’il faut faire
+ 
+ Valeurs suggérées (pour vous aider mais libre à vous de les ajuster) :
+   - Taille initiale : 50
+   - Taille minimale : 10
+   - Taille maximale : 100
+   - Vitesse initiale : 3
+   - Accélération par niveau : 0.5
+   - Augmentation de taille : +0.2
+   - Diminution de taille : -0.1
+   
+ Implanter ce jeu nécessitera obligatoirement l'utilisation de conditions, 
+ des variables intégrées telles mouseX, mouseY, keyPressed, etc.
+ 
  */
