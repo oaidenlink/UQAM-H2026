@@ -1,12 +1,9 @@
 /*
  * Titre: EDM1700 Exercice 4: "Mini-jeu"
  * Auteur.trice: Aiden Oliveira
- * Version: 1.0
+ * Version: 2.0
  * Instructions: Suivez la balle et ne la laissez pas partir!!
- * Notes: Ça bug un peu quand le cercle grossit sur les bord,
- *        mais au moins le reste est bon! :D
- * Bugs / problèmes : Kirby "jiggle" sur les côtés quand on 
- *                    augmente sa taille trop proche du bord
+ * Notes: Kirby ne "jiggle" plus!! 
  */
 
 // VARIABLES - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -15,6 +12,7 @@ final float BASE_CIRCLE_Y = 50;     // variable inchangeable max. de la pos. Y d
 final float BASE_CIRCLE_SIZE = 30;  // variable inchangeable max. de la taille
 final float BASE_CIRCLE_SPEED = 3;  // variable inchangeable max. de la vitesse
 final float MAX_SIZE = 100;         // variable inchangeable max. de la taille maximum
+final float SIZE_UP_RATE = 0.2;       // variable inchangeable simple
 
 color bgColor = #D3EDEB;          // couleur du fond
 color bgColorExtra = #E8FAF9;     // couleur pour les cercles par dessus le fond
@@ -165,15 +163,14 @@ void draw() {
   circleX += circleSpeedX;  // ajoute la vitesse à Kirby afin qu'il bouge (en X)
   circleY += circleSpeedY;  // ajoute la vitesse à Kirby afin qu'il bouge (en Y)
 
-  // CECI EST UN TEST (semi-fonctionnel?) AFIN D'EMPÊCHER KIRBY DE "JIGGLE" SUR LES BORDS
-  circleX = constrain(circleX, 0, width);    // limite la pos X de Kirby dans l'écran
-  circleY = constrain(circleY, 0, height);   // limite la pos Y de Kirby dans l'écran
 
   // rebondissements de Kirby
-  if (circleX-circleSize < 0 || circleX+circleSize > width) {    // si on est hors de l'écran (en X)
-    circleSpeedX = -circleSpeedX;                                // inverse sa vitesse
+  if (circleX-circleSize-SIZE_UP_RATE <= 0 || circleX+circleSize+SIZE_UP_RATE >= width) {    // si on est hors de l'écran (en X)
+    circleSpeedX = -circleSpeedX;                                                            // inverse sa vitesse
+    circleX = constrain(circleX, circleSize+SIZE_UP_RATE, width-circleSize-SIZE_UP_RATE);    // devrait empêcher Kirby de "jiggle" (merci à Alex pour l'aide)
   }
-  if (circleY-circleSize < 0 || circleY+circleSize > height) {   // si on est hors de l'écran (en Y)
-    circleSpeedY = -circleSpeedY;                                // inverse sa vitesse
+  if (circleY-circleSize < 0 || circleY+circleSize > height) {                               // si on est hors de l'écran (en Y)
+    circleSpeedY = -circleSpeedY;                                                            // inverse sa vitesse
+    circleY = constrain(circleY, circleSize+SIZE_UP_RATE, height-circleSize-SIZE_UP_RATE);   // devrait empêcher Kirby de "jiggle" (merci à Alex pour l'aide)
   }
 }
