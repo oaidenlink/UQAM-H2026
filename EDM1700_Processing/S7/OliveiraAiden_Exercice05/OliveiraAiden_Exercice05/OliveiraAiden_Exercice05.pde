@@ -22,52 +22,52 @@ void setup() {
 
 // DRAW / FONCTIONS - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void draw() {
-  drawCrow(width/2, height/2, 60, posCrowCorps, 35, 10);
-  
-  drawCrow(width/2+100, height/2, 120, posCrowCorps*2, 70, 10);
-  println(width/2);
-  
+  drawCrow(width/2, height/2, 60, 100, 35, 10, posCrowCorps, 1.5);
+
+  drawCrow(width/2-200, height/2, 120, 200, 70, 20, posCrowCorps*2, 1);
 }
 
-void drawCrow(int x, int y, int w, int h, int size, int eyes) {
-  pushMatrix();
-    drawBody(x, y-h, y+h);
-    drawChin(x, y, size, w);
-    drawEyes(x, y, eyes);
-    drawBeak(x, y, w);
-    drawTail(x, y, x/20, x/10, 15);
-  popMatrix();
+void drawCrow(int x, int y, int w, int h, int size, int eyes, int posCrowBody, float wing) {
+  drawBody(x, y, h, w, wing);
+  drawChin(x, y, size, w, posCrowBody);
+  drawEyes(x, y, eyes, posCrowBody);
+  drawBeak(x, y, w, posCrowBody);
+  drawLegs(x, y, w/5, h/2, 15, posCrowBody);
 }
 
-void drawBody(int x, int yTop, int yBot) {
-  stroke(crowCorps);
-  strokeWeight(70);
-  line(x, yTop, x, yBot); // Body
-  noStroke();
-}
-
-void drawChin(float w, float h, float size, float arc) {
-  fill(crowCorpsLight);
-  circle(w-posCrowCorps, h-posCrowCorps, size); // Left eye dome
-  circle(w+posCrowCorps, h-posCrowCorps, size); // right eye dome
-  arc(w, h-posCrowCorps, arc, arc+posCrowCorps, 0, PI); // Chin
-}
-
-void drawEyes(float x, float y, float size) {
-  fill(crowYeux);
-  circle(x-posCrowCorps, y-posCrowCorps, size); // Left eye
-  circle(x+posCrowCorps, y-posCrowCorps, size); // Right eye
-}
-
-void drawBeak(int w, int h, int arc) {
+void drawBody(int x, int y, int h, int w, float wing) {
   rectMode(CENTER);
-  fill(crowBec);
-  arc(w, h-10, arc/5, arc/2+posCrowCorps, 0, PI); // Chin
+  noStroke();
+  fill(crowCorps);
+  rect(x, y, w, h, 100);
+  circle(x-20, y+15, w/wing);
+  circle(x+20, y+15, w/wing);
 }
 
-void drawTail(int x, int y, int w, int h, int rond) {
+void drawChin(float x, float y, float size, float w, int posCrowBody) {
+  fill(crowCorpsLight);
+  circle(x-posCrowBody, y-posCrowBody, size); // Left eye dome
+  circle(x+posCrowBody, y-posCrowBody, size); // right eye dome
+  circle(x, y-10, w/2);
+  //arc(x, y-posCrowCorps, w, w+posCrowCorps, 0, PI); // Chin
+}
+
+void drawEyes(float x, float y, float eyes, int posCrowBody) {
+  fill(crowYeux);
+  circle(x-posCrowBody, y-posCrowBody, eyes); // Left eye
+  circle(x+posCrowBody, y-posCrowBody, eyes); // Right eye
+  fill(0);
+  circle(x-posCrowBody, y-posCrowBody, eyes/1.5); // Left eye
+  circle(x+posCrowBody, y-posCrowBody, eyes/1.5); // Right eye
+}
+
+void drawBeak(int x, int y, int w, int posCrowBody) {
+  fill(crowBec);
+  arc(x, y-10, w/5, w/2+posCrowBody, 0, PI); // Chin
+}
+
+void drawLegs(int x, int y, int w, int h, int rond, int posCrowBody) {
   fill(crowCorps);
-  rect(x, y+posCrowCorps*3, w, h, 15);
-  rect(x-posCrowCorps, y+posCrowCorps*3, w, h-10, rond);
-  rect(x+posCrowCorps, y+posCrowCorps*3, w, h-10, rond);
+  rect(x-posCrowBody, y+posCrowBody*2, w, h-10, rond);
+  rect(x+posCrowBody, y+posCrowBody*2, w, h-10, rond);
 }
