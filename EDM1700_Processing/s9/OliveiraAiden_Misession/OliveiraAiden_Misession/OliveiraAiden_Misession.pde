@@ -37,7 +37,7 @@ void setup() {
 void draw() {
   background(#CFC6D1);                          // couleur du fond
   
-  String leTexte = "Nombre de mouche tué : " + nbMouche;  // affiche le nb de mouche tué
+  String leTexte = "Nombre de mouche tuée : " + nbMouche;  // affiche le nb de mouche tué
   rectMode(CENTER);                             // set le point centre au centre
   fill(0);                                      // mets le texte en noir
   textSize(24);                                 // grandeur du texte
