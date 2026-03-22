@@ -3,12 +3,17 @@
  * Auteur.trice: Aiden Oliveira
  * Version: 2.0
  * Instructions: Commencez le jeu en appuyant sur le bouton "play" en haut, puis
-                 cliquez sur la mouche pour essayer de la faire disparaitre! (Le
-                 jeu n'a pas de fin)
+ *               cliquez sur la mouche pour essayer de la faire disparaitre! (Le
+ *               jeu n'a pas de fin)
  * Notes: Une scène où vous tentez de déguster votre soupe sur la table (inanimé)
  *        avec votre cuillère (animé), alors qu'une mouche (personnage interactif)
  *        vous tourne autour...
+ * Bugs: Ma cuillère disparaît pendant une fraction de seconde, je crois que c'est
+ *       à cause du frame rate que j'ai baisser, mais si j'augmente le frame rate,
+ *       mes nouilles font encore plus une crise d'epilepsie..... Rendu la on va
+ *       laisser ça tel quel, sorry :(
  */
+ 
 
 // VARIABLES - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 color noodleColor = #DEC686;            // set la couleur des nouilles
@@ -27,14 +32,24 @@ int nbMouche = 0;                       // quantité de mouche tué
 
 PFont laFont;                           // police d'écriture
 
+float amtSoupeDeg = 0;                  // variable pour le lerpColor de la soupe
+float exampleTimer;                // Test (si j'oublie de l'enlever, désoler, ça sert a rien et je suis fatiguer
+final float MAX_TIMER = 21;
+boolean timerOn = true;
+boolean moucheTap = false;
+
+
+
 // SETUP - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void setup() {
   size(1280, 720);                      // grandeur de l'écran
   frameRate(24);                        // baisse le frame rate (pour que ça soit moins rapide)
   rotSpoon = BASE_ROT_SPOON;            // set la rotation a 0;
   laFont = createFont("RoastedKetchup.ttf", 128); // créé la police de chara.
-  float exampleTimer = 5;               // Test (si j'oublie de l'enlever, désoler, ça sert a rien et je suis fatiguer
+  exampleTimer = MAX_TIMER;
 }
+
+
 
 // DRAW - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void draw() {
@@ -52,11 +67,30 @@ void draw() {
   drawBackground();                             // appelle la fonction qui dessine le fond
   drawSoup();                                   // appelle la fonction qui dessine la soupe
   
-  //exampleTimer = timer(exampleTimer);
-  //if (exampleTimer <= 0) {
-  //  // Truc fait un coup
-  //  exampleTimer = 5; // reset le timer
+  // MERCI À ALEX DE M'ÊTRE VENU EN AIDE POUR LE TIMER!!
+  exampleTimer = timer(exampleTimer);                        // appelle la fonction timer
+  if (exampleTimer <= 0) {                                   // si le timer arrive à 0
+    fill(0);                                                 // texte en noir
+    rectMode(CENTER);                                        // texte centré (la "boîte")
+    textAlign(CENTER);                                       // texte centré (le texte)
+    textSize(60);                                            // grosseur du texte
+    text("Fin de la partie!", width/2, height/2, 400, 100);  // affiche le texte
+    textSize(32);                                            // grosseur du texte
+    text("Appyuez sur une touche pour recommencer", width/2, height/2+50, 600, 100); // affiche le texte
+    rectMode(CORNER);                                        // remets le point centre dans le coin
+    timerOn = false;                                         // désactive le timer
   }
+  
+  reset();                                      // appelle la fonction qui reset le timer/la soupe
+  
+  int tempsRestant = int(exampleTimer);         // "arrondis" le timer (int au lieu de float)
+  String exTimer = tempsRestant + " sec " ;     // affiche le temps
+  rectMode(CENTER);                             // set le point centre au centre
+  fill(0);                                      // mets le texte en noir
+  textSize(28);                                 // grandeur du texte
+  textAlign(RIGHT);                             // aligne le texte a droite
+  text(exTimer, 540, 60, 1000, 50);             // positionne le texte 
+  rectMode(CORNER);                             // remets le point centre dans le coin pour le reste du projet
   
   if (rotSpoon <= 360) {                        // si la rot de la cuillère est plus petit que 360
     for (int i = 0; i <= 360; i++) {            // pendant 360 instances
@@ -73,15 +107,16 @@ void draw() {
   drawMouche(distSouris);                       // dessine la mouche
 }
 
+
+
 // ÉLÉMENTS INANIMÉS + BOUCLE (soupe) - - - - - - - - - - - - - 
 void drawSoup() {
   stroke(#506371);                    // ajoute la bordure du bol
   strokeWeight(30);                   // ajoute l'épaisseur de la bordure du bol
-  fill(#935F46);                      // ajoute la couleur de la soupe
+  color soupe = lerpColor(#935F46, #779055, amtSoupeDeg);  // change la couleur de la soupe
+  fill(soupe);                        // ajoute la couleur de la soupe
   circle(width/2, height/2, 600);     // créée le bol de soupe
   
-  
-
   drawVeggies();                      // appelle la fonction qui créé les légumes
   
   for (int i = 0; i <= 40; i++) {     // boucle afin de créer les pâtes
@@ -90,6 +125,8 @@ void drawSoup() {
     drawNoodles(posX, posY);          // appelle la fonction qui fait les nouilles (envoie des positions)
   }
 }
+
+
 
 void drawVeggies() {                      // fonction pour dessiner les légumes
     // - - CELERI - - - - - - - - - - 
@@ -107,8 +144,7 @@ void drawVeggies() {                      // fonction pour dessiner les légumes
   popMatrix();
   rectMode(CORNER);                       // mets le point centre au coin du rect
   
-  
-  
+
     // - - CAROTTE - - - - - - - - - - 
   pushMatrix();
     translate(width/2, height/2);         // mets le point centre au centre
@@ -121,6 +157,7 @@ void drawVeggies() {                      // fonction pour dessiner les légumes
     circle(-120, 115, 60);
     circle(0, -200, 60);
   popMatrix();
+  
   
     // - - PATATE - - - - - - - - - - 
   pushMatrix();
@@ -136,12 +173,16 @@ void drawVeggies() {                      // fonction pour dessiner les légumes
   popMatrix();
 }
 
+
+
 void drawNoodles(float posX, float posY) {   // dessine les pâtes
   noFill();                                  // enleve la couleur
   stroke(noodleColor);                       // créé une bordure couleur nouille
   strokeWeight(10);                          // modifie l'épaisseur de la nouille
   circle(posX, posY, 30);                    // dessine le cercle
 }
+
+
 
 void drawBackground() {                      // dessine un fond simple
   noStroke();                                // enlève la bordure
@@ -160,6 +201,8 @@ void drawBackground() {                      // dessine un fond simple
   circle(1000, -20, 200);                    // dessine le verre de jus
 }
 
+
+
 // ÉLÉMENTS ANIMÉS - - - - - - - - - - - - - 
 void drawSpoon(float rot) {
   pushMatrix();                          // créé la bubulle pour l'animation
@@ -171,6 +214,8 @@ void drawSpoon(float rot) {
     rect(360, 0, 300, 50);               // dessine la cuillère
   popMatrix();                           // ferme la bubulle
 }
+
+
 
 // PERSONNAGE INTERACTIF - - - - - - - - - - - - - 
 void drawMouche(float distSouris) {
@@ -201,13 +246,15 @@ void drawMouche(float distSouris) {
     circle(circleX-20, circleY-10, 30);       // oeil droit
   popMatrix();
   
-  if (distSouris <= circleSize && mousePressed) {   // si la pos. de la souris est dans le cercle
+  if (distSouris <= circleSize && mousePressed && timerOn == true) {   // si la pos. de la souris est dans le cercle
     float randomPosX = random(30, width-40);        // chiffre aléatoire (pos X)
     float randomPosY = random(30, height-40);       // chiffre aléatoire (pos Y)
     circleX = randomPosX;                           // bouge la mouche a une pos X aléatoire
     circleY = randomPosY;                           // bouge la mouche a une pos Y aléatoire
     nbMouche++;                                     // nombre de mouche tué augmente de 1
-  }
+    moucheTap = true;
+    reset();  
+}
   
   if (circleX-circleSize/2 <= 0 || circleX+circleSize/2 >= width) {    // si on est hors de l'écran (en X)
     circleSpeedX = -circleSpeedX;                                      // inverse sa vitesse
@@ -217,13 +264,25 @@ void drawMouche(float distSouris) {
   }
 }
 
-//void timer(float tempsRecu) {
-//  float time = ;                             // le temps pour le timer
-//  float countdown;                        // le décompte (où on est rendu dans le temps)
-//  tempsRecu = countdown;
-//  time(countdown) {
-//    if (countdown > 0) {
-//      countdown-=1/frameRate;
-//    }
-//  return countdown;
-//}
+
+
+// - DÉCOMPTE - - - -
+float timer(float countdown) {
+    if (countdown > 0) {            // s'il reste encore du temps au décompte
+      countdown-=1/frameRate;       // baisser le décompte
+      amtSoupeDeg += 0.1/frameRate; // change la couleur de la soupe
+    }
+    return countdown;               // retourne le temps restant
+}
+
+
+
+// - FONCTION POUR REMETTRE LA SOUPE/TIMER À LEUR POINT D'ORIGINE - - - - 
+void reset() {
+  if (keyPressed && timerOn == false || moucheTap == true) {  // si on recommence une partie OU si la mouche est touchée
+    exampleTimer = MAX_TIMER;                                 // reset le timer
+    amtSoupeDeg = 0;                                          // remets la soupe à sa couleur d'origine
+    timerOn = true;                                           // rallume le timer
+    moucheTap = false;                                        // désactive la mouche touchée
+  }
+}
