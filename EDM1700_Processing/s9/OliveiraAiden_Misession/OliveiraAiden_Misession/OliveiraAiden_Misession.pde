@@ -1,7 +1,7 @@
 /*
  * Titre: EDM1700 Travail pratique de mi-session
  * Auteur.trice: Aiden Oliveira
- * Version: 1.0
+ * Version: 2.0
  * Instructions: Commencez le jeu en appuyant sur le bouton "play" en haut, puis
                  cliquez sur la mouche pour essayer de la faire disparaitre! (Le
                  jeu n'a pas de fin)
@@ -25,28 +25,38 @@ float distSouris;                       // variable pour la pos de la souris
 
 int nbMouche = 0;                       // quantité de mouche tué
 
+PFont laFont;                           // police d'écriture
+
 // SETUP - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void setup() {
   size(1280, 720);                      // grandeur de l'écran
   frameRate(24);                        // baisse le frame rate (pour que ça soit moins rapide)
   rotSpoon = BASE_ROT_SPOON;            // set la rotation a 0;
-
+  laFont = createFont("RoastedKetchup.ttf", 128); // créé la police de chara.
+  float exampleTimer = 5;               // Test (si j'oublie de l'enlever, désoler, ça sert a rien et je suis fatiguer
 }
 
 // DRAW - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void draw() {
   background(#CFC6D1);                          // couleur du fond
   
+  textFont(laFont);                             // change la police de chara.
   String leTexte = "Nombre de mouche tuée : " + nbMouche;  // affiche le nb de mouche tué
   rectMode(CENTER);                             // set le point centre au centre
   fill(0);                                      // mets le texte en noir
-  textSize(24);                                 // grandeur du texte
+  textSize(28);                                 // grandeur du texte
   textAlign(LEFT);                              // aligne le texte a gauche
   text(leTexte, 550, 60, 1000, 50);             // positionne le texte (y'a rien la dedans qui fonctionnais bruh)
   rectMode(CORNER);                             // remets le point centre dans le coin pour le reste du projet
   
   drawBackground();                             // appelle la fonction qui dessine le fond
   drawSoup();                                   // appelle la fonction qui dessine la soupe
+  
+  //exampleTimer = timer(exampleTimer);
+  //if (exampleTimer <= 0) {
+  //  // Truc fait un coup
+  //  exampleTimer = 5; // reset le timer
+  }
   
   if (rotSpoon <= 360) {                        // si la rot de la cuillère est plus petit que 360
     for (int i = 0; i <= 360; i++) {            // pendant 360 instances
@@ -69,6 +79,8 @@ void drawSoup() {
   strokeWeight(30);                   // ajoute l'épaisseur de la bordure du bol
   fill(#935F46);                      // ajoute la couleur de la soupe
   circle(width/2, height/2, 600);     // créée le bol de soupe
+  
+  
 
   drawVeggies();                      // appelle la fonction qui créé les légumes
   
@@ -204,3 +216,14 @@ void drawMouche(float distSouris) {
     circleSpeedY = -circleSpeedY;                                      // inverse sa vitesse
   }
 }
+
+//void timer(float tempsRecu) {
+//  float time = ;                             // le temps pour le timer
+//  float countdown;                        // le décompte (où on est rendu dans le temps)
+//  tempsRecu = countdown;
+//  time(countdown) {
+//    if (countdown > 0) {
+//      countdown-=1/frameRate;
+//    }
+//  return countdown;
+//}
