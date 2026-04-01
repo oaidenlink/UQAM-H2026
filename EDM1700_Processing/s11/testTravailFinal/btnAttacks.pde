@@ -31,7 +31,6 @@ class btnAttacks {
   void couleurBtn(boolean coul) {
     if (coul == true) {
       coulClique = #484848;
-      coul = false;
     } else {
       coulClique = 0;
     }
