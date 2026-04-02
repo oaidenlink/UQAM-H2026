@@ -18,13 +18,17 @@ class sonEquipe {
     fill(0);
     rect(x, y, w, w);
     image(icon, x, y, w, w);
-    //attackBox(x, height*0.46, w+100, w);
   }
   
-  void attackBox(float x, float y, float w, float h) {
+  //void attackBox() {
+  //  attackBox(x, height*0.46, w+100, w);
+  //}
+  //btnAttacks atk1
+  void attackBox() {
     fill(255);
     stroke(0);
-    rect(x, y, w, h);
+    rect(x, height*0.46, w+100, w);
+    //atk1.afficher();
   }
   
   

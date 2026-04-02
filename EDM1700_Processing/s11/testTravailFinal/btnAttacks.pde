@@ -46,4 +46,8 @@ class btnAttacks {
       return false;
     }
   }
+  
+  String getEtiquette() {
+    return etiquette;
+  }
 }
