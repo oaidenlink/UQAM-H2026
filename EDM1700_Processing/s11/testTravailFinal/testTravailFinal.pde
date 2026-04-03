@@ -90,17 +90,17 @@ void setup() {
   LexieAtk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "Lexie Défends");
   LexieAtk3 = new btnAttacks(width*0.17, height*0.66, 170, 50, "Lexie Power");
 
-  Teammate1Atk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "Bro Attaque");
-  Teammate1Atk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "Bro Défends");
-  Teammate1Atk3 = new btnAttacks(width*0.17, height*0.66, 170, 50, "Bro Power");
+  Teammate1Atk1 = new btnAttacks(width*0.4, height*0.51, 170, 50, "Bro Attaque");
+  Teammate1Atk2 = new btnAttacks(width*0.4, height*0.585, 170, 50, "Bro Défends");
+  Teammate1Atk3 = new btnAttacks(width*0.4, height*0.66, 170, 50, "Bro Power");
 
-  Teammate2Atk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "Bro Attaque");
-  Teammate2Atk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "Bro Défends");
-  Teammate2Atk3 = new btnAttacks(width*0.17, height*0.66, 170, 50, "Bro Power");
+  Teammate2Atk1 = new btnAttacks(width*0.63, height*0.51, 170, 50, "Granny Attaque");
+  Teammate2Atk2 = new btnAttacks(width*0.63, height*0.585, 170, 50, "Granny Défends");
+  Teammate2Atk3 = new btnAttacks(width*0.63, height*0.66, 170, 50, "Granny Power");
 
-  Teammate3Atk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "Bro Attaque");
-  Teammate3Atk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "Bro Défends");
-  Teammate3Atk3 = new btnAttacks(width*0.17, height*0.66, 170, 50, "Bro Power");
+  Teammate3Atk1 = new btnAttacks(width*0.86, height*0.51, 170, 50, "Rem Attaque");
+  Teammate3Atk2 = new btnAttacks(width*0.86, height*0.585, 170, 50, "Rem Défends");
+  Teammate3Atk3 = new btnAttacks(width*0.86, height*0.66, 170, 50, "Rem Power");
 }
 
 
@@ -128,24 +128,31 @@ void draw() {
     isLexieAtk = false;
   }
 
-  if (fightRotationNb == 2) {
+  if (fightRotationNb == 2 && isEnnemyAtk == false) {
     isTeammateAtk1 = true;
   } else {
     isTeammateAtk1 = false;
   }
 
-  if (fightRotationNb == 3) {
+  if (fightRotationNb == 3 && isEnnemyAtk == false) {
     isTeammateAtk2 = true;
   } else {
     isTeammateAtk3 = false;
   }
 
-  if (fightRotationNb == 4) {
+  if (fightRotationNb == 4 && isEnnemyAtk == false) {
     isTeammateAtk3 = true;
   } else {
     isTeammateAtk3 = false;
   }
-
+  println("outside: " + fightRotationNb);
+  /*
+   en faite quand je fait mon if (fightRotationNb == teamMember+1)
+   vu que ça calcule le +1 ça set le prochain perso avant le reste, so ça
+   fait bugger le shit :(
+   for some reason tho ça le fait juste quand t'as 2 characters?? might
+   do a special fix for that
+   */
 
   if (fightRotationNb <= teamMember) {
     println("fightRotationNb: " + fightRotationNb + " / teamMember: " + teamMember);
@@ -174,25 +181,19 @@ void draw() {
       Teammate3Atk2.afficher();
       Teammate3Atk3.afficher();
     }
-  } else if ( fightRotationNb == teamMember+1) { //modify this plz
+  } else if (fightRotationNb > teamMember) { //modify this plz
     println("C'est le tour du méchant");
     isEnnemyAtk = true;
     ennemyAttacks();
-    fightRotationNb = 1;
-  } else if (fightRotationNb == 5) {
-    fightRotationNb = 1;
-  } else {
-  }
+  } 
+  //else if (fightRotationNb > teamMember) {
+  //  fightRotationNb = 1;
+  //}
 }
 
 void ennemyAttacks() {
   isEnnemyAtk = false;
-}
-
-void attackBox(float x, float y, float w, float h) {
-  fill(255);
-  stroke(0);
-  rect(x, y, w, h);
+  fightRotationNb = 1;
 }
 
 
@@ -223,8 +224,28 @@ void mousePressed() {
   if (LexieAtk1.estClique() && isLexieAtk == true ||
     LexieAtk2.estClique() && isLexieAtk == true ||
     LexieAtk3.estClique() && isLexieAtk == true) {
-    println("touché - " + fightRotationNb);
     fightRotationNb++;
     isLexieAtk = false;
+  }
+
+  if (Teammate1Atk1.estClique() && isTeammateAtk1 == true ||
+    Teammate1Atk2.estClique() && isTeammateAtk1 == true ||
+    Teammate1Atk3.estClique() && isTeammateAtk1 == true) {
+    fightRotationNb++;
+    isTeammateAtk1 = false;
+  }
+
+  if (Teammate2Atk1.estClique() && isTeammateAtk2 == true ||
+    Teammate2Atk2.estClique() && isTeammateAtk2 == true ||
+    Teammate2Atk3.estClique() && isTeammateAtk2 == true) {
+    fightRotationNb++;
+    isTeammateAtk2 = false;
+  }
+
+  if (Teammate3Atk1.estClique() && isTeammateAtk3 == true ||
+    Teammate3Atk2.estClique() && isTeammateAtk3 == true ||
+    Teammate3Atk3.estClique() && isTeammateAtk3 == true) {
+    fightRotationNb++;
+    isTeammateAtk3 = false;
   }
 }
