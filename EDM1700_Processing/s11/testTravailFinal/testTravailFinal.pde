@@ -7,7 +7,7 @@
  paths et le choix des prochains niveaux
  boss fight
  getting Emmett parts
- buiding Emmett mini game
+ building Emmett mini game
  menu / save screen / home screen / fail screen / reset / fin de jeu
  changer le curseur
  objects you can buy / win / sell
@@ -42,6 +42,9 @@ btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
 btnAttacks LexieAtk3;
 boolean isLexieAtk = false;
+int hpLexie;
+int currentHpLexie;
+int atkLexie;
 
 btnAttacks Teammate1Atk1;
 btnAttacks Teammate1Atk2;
