@@ -122,37 +122,7 @@ void draw() {
     newTeammates = false;
   }
 
-  if (fightRotationNb == 1) {
-    isLexieAtk = true;
-  } else {
-    isLexieAtk = false;
-  }
-
-  if (fightRotationNb == 2 && isEnnemyAtk == false) {
-    isTeammateAtk1 = true;
-  } else {
-    isTeammateAtk1 = false;
-  }
-
-  if (fightRotationNb == 3 && isEnnemyAtk == false) {
-    isTeammateAtk2 = true;
-  } else {
-    isTeammateAtk3 = false;
-  }
-
-  if (fightRotationNb == 4 && isEnnemyAtk == false) {
-    isTeammateAtk3 = true;
-  } else {
-    isTeammateAtk3 = false;
-  }
-  println("outside: " + fightRotationNb);
-  /*
-   en faite quand je fait mon if (fightRotationNb == teamMember+1)
-   vu que ça calcule le +1 ça set le prochain perso avant le reste, so ça
-   fait bugger le shit :(
-   for some reason tho ça le fait juste quand t'as 2 characters?? might
-   do a special fix for that
-   */
+ 
 
   if (fightRotationNb <= teamMember) {
     println("fightRotationNb: " + fightRotationNb + " / teamMember: " + teamMember);
@@ -189,6 +159,32 @@ void draw() {
   //else if (fightRotationNb > teamMember) {
   //  fightRotationNb = 1;
   //}
+  
+  
+  if (fightRotationNb == 1) {
+    isLexieAtk = true;
+  } else {
+    isLexieAtk = false;
+  }
+
+  if (fightRotationNb == 2 && isEnnemyAtk == false) {
+    isTeammateAtk1 = true;
+  } else {
+    isTeammateAtk1 = false;
+  }
+
+  if (fightRotationNb == 3 && isEnnemyAtk == false) {
+    isTeammateAtk2 = true;
+  } else {
+    isTeammateAtk3 = false;
+  }
+
+  if (fightRotationNb == 4 && isEnnemyAtk == false) {
+    isTeammateAtk3 = true;
+  } else {
+    isTeammateAtk3 = false;
+  }
+  
 }
 
 void ennemyAttacks() {
