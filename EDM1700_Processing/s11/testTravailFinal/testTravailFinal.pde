@@ -1,8 +1,6 @@
 /**
- TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
- ajouter des persos à sa team (add to a tableau)
+   TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
  SAVE FILE TABARNAK
- afficher l'atk box seulement quand c'est le tour de ce perso
  attaques fonctionnelles
  ennemis  fonctionnels
  tour par tour shit machin
@@ -15,7 +13,7 @@
  objects you can buy / win / sell
  art
  animations???
- */
+*/
 
 
 
@@ -30,11 +28,13 @@ PImage placeholder2;
 PImage placeholder3;
 PImage placeholder4;
 PImage placeholder5;
+PImage enemyPlaceholder;
 
 PImage MainCharacter;
 PImage Teammate1;
 PImage Teammate2;
 PImage Teammate3;
+PImage Enemy;
 
 btnAttacks attaques; // test one
 
@@ -80,11 +80,12 @@ void setup() {
   placeholder3 = loadImage("rembonks.png");
   placeholder4 = loadImage("remsilly.png");
   placeholder5 = loadImage("remviolence.png");
+  enemyPlaceholder = loadImage("DynamoWee.png");
 
   couleurBtn = #9BD8D0;
 
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5);
-  attaques = new btnAttacks(width/2, height/2, 100, 50, "Attaque 1");
+  attaques = new btnAttacks(width/3, height/2, 100, 50, "Attaque 1");
 
   LexieAtk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "Lexie Attaque");
   LexieAtk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "Lexie Défends");
@@ -101,6 +102,7 @@ void setup() {
   Teammate3Atk1 = new btnAttacks(width*0.86, height*0.51, 170, 50, "Rem Attaque");
   Teammate3Atk2 = new btnAttacks(width*0.86, height*0.585, 170, 50, "Rem Défends");
   Teammate3Atk3 = new btnAttacks(width*0.86, height*0.66, 170, 50, "Rem Power");
+
 }
 
 
@@ -112,6 +114,8 @@ void draw() {
   background(couleurBtn);
   attaques.afficher();
 
+  image(enemyPlaceholder, width/2-250, height/2-250, 500, 500);
+  
   for (int i = 0; i < team.length; i++) {
     if (team[i] != null) {
       team[i].afficher();
@@ -122,10 +126,10 @@ void draw() {
     newTeammates = false;
   }
 
- 
+
 
   if (fightRotationNb <= teamMember) {
-    println("fightRotationNb: " + fightRotationNb + " / teamMember: " + teamMember);
+    //println("fightRotationNb: " + fightRotationNb + " / teamMember: " + teamMember);
 
     if (isLexieAtk == true) {
       team[fightRotationNb-1].attackBox();
@@ -152,15 +156,12 @@ void draw() {
       Teammate3Atk3.afficher();
     }
   } else if (fightRotationNb > teamMember) { //modify this plz
-    println("C'est le tour du méchant");
+    //println("C'est le tour du méchant");
     isEnnemyAtk = true;
     ennemyAttacks();
-  } 
-  //else if (fightRotationNb > teamMember) {
-  //  fightRotationNb = 1;
-  //}
-  
-  
+  }
+
+
   if (fightRotationNb == 1) {
     isLexieAtk = true;
   } else {
@@ -184,12 +185,26 @@ void draw() {
   } else {
     isTeammateAtk3 = false;
   }
-  
 }
 
 void ennemyAttacks() {
-  isEnnemyAtk = false;
-  fightRotationNb = 1;
+  int nbAtk = int(random(1, 4));
+  
+  if (nbAtk == 1) {
+    //attaque 1
+    isEnnemyAtk = false;
+  } else if (nbAtk == 2) {
+    //attaque 2
+    isEnnemyAtk = false;
+  } else {
+    //attaque 3
+    isEnnemyAtk = false;
+  }
+  
+  
+  if (isEnnemyAtk == false) {
+    fightRotationNb = 1;
+  }
 }
 
 
@@ -214,7 +229,7 @@ void mousePressed() {
     }
     teamMember++;
   } else if (newTeammates == false) {
-    println("la team est pleine!!");
+    //println("la team est pleine!!");
   }
 
   if (LexieAtk1.estClique() && isLexieAtk == true ||
