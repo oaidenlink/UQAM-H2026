@@ -42,32 +42,45 @@ btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
 btnAttacks LexieAtk3;
 boolean isLexieAtk = false;
-int hpLexie;
+int hpLexie = 10;
 int currentHpLexie;
-int atkLexie;
+int atkLexie =  4;
 
 btnAttacks Teammate1Atk1;
 btnAttacks Teammate1Atk2;
 btnAttacks Teammate1Atk3;
 boolean isTeammateAtk1 = false;
+int hpTeammate1;
+int currentHpTeammate1;
+int atkTeammate1;
 
 btnAttacks Teammate2Atk1;
 btnAttacks Teammate2Atk2;
 btnAttacks Teammate2Atk3;
 boolean isTeammateAtk2 = false;
+int hpTeammate2;
+int currentHpTeammate2;
+int atkTeammate2;
 
 btnAttacks Teammate3Atk1;
 btnAttacks Teammate3Atk2;
 btnAttacks Teammate3Atk3;
 boolean isTeammateAtk3 = false;
+int hpTeammate3;
+int currentHpTeammate3;
+int atkTeammate3;
 
 boolean isEnnemyAtk = false;
+int hpEnemy;
+int currentHpEnemy;
+int atkEnemy;
 
 color couleurBtn;
 
-
 int teamMember = 1;
 int fightRotationNb = 1;
+String turnCurrentAtk;
+int turnCurrentDmg;
 
 boolean newTeammates = true;
 
@@ -88,7 +101,7 @@ void setup() {
   couleurBtn = #9BD8D0;
 
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5);
-  attaques = new btnAttacks(width/3, height/2, 100, 50, "Attaque 1");
+  attaques = new btnAttacks(width/3, height/2-200, 100, 50, "Attaque 1");
 
   LexieAtk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "Lexie Attaque");
   LexieAtk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "Lexie Défends");
@@ -139,6 +152,8 @@ void draw() {
       LexieAtk1.afficher();
       LexieAtk2.afficher();
       LexieAtk3.afficher();
+      turnCurrentAtk = ;
+      turnCurrentAtk = atkLexie;
     }
     if (isTeammateAtk1 == true) {
       team[fightRotationNb-1].attackBox();
@@ -238,7 +253,8 @@ void mousePressed() {
   if (LexieAtk1.estClique() && isLexieAtk == true ||
     LexieAtk2.estClique() && isLexieAtk == true ||
     LexieAtk3.estClique() && isLexieAtk == true) {
-    fightRotationNb++;
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+    
     isLexieAtk = false;
   }
 
@@ -262,4 +278,9 @@ void mousePressed() {
     fightRotationNb++;
     isTeammateAtk3 = false;
   }
+}
+
+void turnCurrentFight(String atkName, int atkDmg) {
+ println("atkName: " + atkName + " + atkDmg: " + atkDmg);
+ fightRotationNb++;
 }
