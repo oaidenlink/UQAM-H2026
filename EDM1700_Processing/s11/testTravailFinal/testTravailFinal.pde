@@ -152,8 +152,8 @@ void draw() {
       LexieAtk1.afficher();
       LexieAtk2.afficher();
       LexieAtk3.afficher();
-      turnCurrentAtk = ;
-      turnCurrentAtk = atkLexie;
+      turnCurrentAtk = "Placeholder name";
+      turnCurrentDmg = atkLexie;
     }
     if (isTeammateAtk1 == true) {
       team[fightRotationNb-1].attackBox();
