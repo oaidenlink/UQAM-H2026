@@ -152,7 +152,6 @@ void draw() {
       LexieAtk1.afficher();
       LexieAtk2.afficher();
       LexieAtk3.afficher();
-      turnCurrentAtk = "Placeholder name";
       turnCurrentDmg = atkLexie;
     }
     if (isTeammateAtk1 == true) {
@@ -160,18 +159,21 @@ void draw() {
       Teammate1Atk1.afficher();
       Teammate1Atk2.afficher();
       Teammate1Atk3.afficher();
+      turnCurrentDmg = atkTeammate1;
     }
     if (isTeammateAtk2 == true) {
       team[fightRotationNb-1].attackBox();
       Teammate2Atk1.afficher();
       Teammate2Atk2.afficher();
       Teammate2Atk3.afficher();
+      turnCurrentDmg = atkTeammate2;
     }
     if (isTeammateAtk3 == true) {
       team[fightRotationNb-1].attackBox();
       Teammate3Atk1.afficher();
       Teammate3Atk2.afficher();
       Teammate3Atk3.afficher();
+      turnCurrentDmg = atkTeammate3;
     }
   } else if (fightRotationNb > teamMember) { //modify this plz
     //println("C'est le tour du méchant");
@@ -208,14 +210,23 @@ void draw() {
 void ennemyAttacks() {
   int nbAtk = int(random(1, 4));
   
+  String testEnemyAtk;
+  turnCurrentDmg = atkEnemy;
+  
   if (nbAtk == 1) {
     //attaque 1
+    testEnemyAtk = "Atk 1 ennemi";
+    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
     isEnnemyAtk = false;
   } else if (nbAtk == 2) {
     //attaque 2
+    testEnemyAtk = "Atk 2 ennemi";
+    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
     isEnnemyAtk = false;
   } else {
     //attaque 3
+    testEnemyAtk = "Atk 3 ennemi";
+    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
     isEnnemyAtk = false;
   }
   
@@ -250,31 +261,39 @@ void mousePressed() {
     //println("la team est pleine!!");
   }
 
-  if (LexieAtk1.estClique() && isLexieAtk == true ||
-    LexieAtk2.estClique() && isLexieAtk == true ||
-    LexieAtk3.estClique() && isLexieAtk == true) {
+  if (isLexieAtk == true) {
+    if( LexieAtk1.estClique() ) {
+      turnCurrentAtk = "Lexie attaque";
       turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    
-    isLexieAtk = false;
+      isLexieAtk = false;
+    } else if ( LexieAtk2.estClique() ) {
+      turnCurrentAtk = "Lexie défends";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isLexieAtk = false;
+    } else if ( LexieAtk3.estClique() ) {
+      turnCurrentAtk = "Lexie power";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isLexieAtk = false;
+    }
   }
 
-  if (Teammate1Atk1.estClique() && isTeammateAtk1 == true ||
-    Teammate1Atk2.estClique() && isTeammateAtk1 == true ||
-    Teammate1Atk3.estClique() && isTeammateAtk1 == true) {
+  if (Teammate1Atk1.estClique() && isTeammateAtk1 == true || Teammate1Atk2.estClique() && isTeammateAtk1 == true || Teammate1Atk3.estClique() && isTeammateAtk1 == true) {
+      turnCurrentAtk = "Teammate 1 attaque";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
     fightRotationNb++;
     isTeammateAtk1 = false;
   }
 
-  if (Teammate2Atk1.estClique() && isTeammateAtk2 == true ||
-    Teammate2Atk2.estClique() && isTeammateAtk2 == true ||
-    Teammate2Atk3.estClique() && isTeammateAtk2 == true) {
+  if (Teammate2Atk1.estClique() && isTeammateAtk2 == true || Teammate2Atk2.estClique() && isTeammateAtk2 == true || Teammate2Atk3.estClique() && isTeammateAtk2 == true) {
+      turnCurrentAtk = "Teammate 2 attaque";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
     fightRotationNb++;
     isTeammateAtk2 = false;
   }
 
-  if (Teammate3Atk1.estClique() && isTeammateAtk3 == true ||
-    Teammate3Atk2.estClique() && isTeammateAtk3 == true ||
-    Teammate3Atk3.estClique() && isTeammateAtk3 == true) {
+  if (Teammate3Atk1.estClique() && isTeammateAtk3 == true || Teammate3Atk2.estClique() && isTeammateAtk3 == true || Teammate3Atk3.estClique() && isTeammateAtk3 == true) {
+      turnCurrentAtk = "Teammate 3 attaque";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
     fightRotationNb++;
     isTeammateAtk3 = false;
   }
