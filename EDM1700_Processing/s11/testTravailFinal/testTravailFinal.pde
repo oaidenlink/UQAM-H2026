@@ -37,6 +37,10 @@ PImage Teammate3;
 PImage Enemy;
 
 btnAttacks attaques; // test one
+afficherTexte afficherHpLexie; // test???
+afficherTexte afficherHpTeam1; // test???
+afficherTexte afficherHpTeam2; // test???
+afficherTexte afficherHpTeam3; // test???
 
 btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
@@ -45,34 +49,38 @@ boolean isLexieAtk = false;
 int hpLexie = 10;
 int currentHpLexie;
 int atkLexie =  4;
+String txtHpLexie;
 
 btnAttacks Teammate1Atk1;
 btnAttacks Teammate1Atk2;
 btnAttacks Teammate1Atk3;
 boolean isTeammateAtk1 = false;
-int hpTeammate1;
+int hpTeammate1 = 12;
 int currentHpTeammate1;
 int atkTeammate1;
+String txtHpTeam1;
 
 btnAttacks Teammate2Atk1;
 btnAttacks Teammate2Atk2;
 btnAttacks Teammate2Atk3;
 boolean isTeammateAtk2 = false;
-int hpTeammate2;
+int hpTeammate2 = 10;
 int currentHpTeammate2;
 int atkTeammate2;
+String txtHpTeam2;
 
 btnAttacks Teammate3Atk1;
 btnAttacks Teammate3Atk2;
 btnAttacks Teammate3Atk3;
 boolean isTeammateAtk3 = false;
-int hpTeammate3;
+int hpTeammate3 = 14;
 int currentHpTeammate3;
 int atkTeammate3;
+String txtHpTeam3;
 
 boolean isEnnemyAtk = false;
 int hpEnemy;
-int currentHpEnemy;
+int currentHpEnemy = hpEnemy;
 int atkEnemy;
 
 color couleurBtn;
@@ -99,6 +107,24 @@ void setup() {
   enemyPlaceholder = loadImage("DynamoWee.png");
 
   couleurBtn = #9BD8D0;
+  
+  
+  
+  
+  currentHpLexie = hpLexie;
+  txtHpLexie = currentHpLexie + "/" + hpLexie;
+  
+  currentHpTeammate1 = hpTeammate1;
+  txtHpTeam1 = currentHpTeammate1 + "/" + hpTeammate1;
+  
+  currentHpTeammate2 = hpTeammate2;
+  txtHpTeam2 = currentHpTeammate2 + "/" + hpTeammate2;
+  
+  currentHpTeammate3 = hpTeammate3;
+  txtHpTeam3 = currentHpTeammate3 + "/" + hpTeammate3;
+  
+  
+  
 
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5);
   attaques = new btnAttacks(width/3, height/2-200, 100, 50, "Attaque 1");
@@ -142,164 +168,14 @@ void draw() {
     newTeammates = false;
   }
 
+  fightRotation();
 
-
-  if (fightRotationNb <= teamMember) {
-    //println("fightRotationNb: " + fightRotationNb + " / teamMember: " + teamMember);
-
-    if (isLexieAtk == true) {
-      team[fightRotationNb-1].attackBox();
-      LexieAtk1.afficher();
-      LexieAtk2.afficher();
-      LexieAtk3.afficher();
-      turnCurrentDmg = atkLexie;
-    }
-    if (isTeammateAtk1 == true) {
-      team[fightRotationNb-1].attackBox();
-      Teammate1Atk1.afficher();
-      Teammate1Atk2.afficher();
-      Teammate1Atk3.afficher();
-      turnCurrentDmg = atkTeammate1;
-    }
-    if (isTeammateAtk2 == true) {
-      team[fightRotationNb-1].attackBox();
-      Teammate2Atk1.afficher();
-      Teammate2Atk2.afficher();
-      Teammate2Atk3.afficher();
-      turnCurrentDmg = atkTeammate2;
-    }
-    if (isTeammateAtk3 == true) {
-      team[fightRotationNb-1].attackBox();
-      Teammate3Atk1.afficher();
-      Teammate3Atk2.afficher();
-      Teammate3Atk3.afficher();
-      turnCurrentDmg = atkTeammate3;
-    }
-  } else if (fightRotationNb > teamMember) { //modify this plz
-    //println("C'est le tour du méchant");
-    isEnnemyAtk = true;
-    ennemyAttacks();
-  }
-
-
-  if (fightRotationNb == 1) {
-    isLexieAtk = true;
-  } else {
-    isLexieAtk = false;
-  }
-
-  if (fightRotationNb == 2 && isEnnemyAtk == false) {
-    isTeammateAtk1 = true;
-  } else {
-    isTeammateAtk1 = false;
-  }
-
-  if (fightRotationNb == 3 && isEnnemyAtk == false) {
-    isTeammateAtk2 = true;
-  } else {
-    isTeammateAtk3 = false;
-  }
-
-  if (fightRotationNb == 4 && isEnnemyAtk == false) {
-    isTeammateAtk3 = true;
-  } else {
-    isTeammateAtk3 = false;
-  }
-}
-
-void ennemyAttacks() {
-  int nbAtk = int(random(1, 4));
+  afficherHpLexie = new afficherTexte(width*0.15, height-20, 100, 20, txtHpLexie);
+  txtHpLexie = currentHpLexie + "/" + hpLexie;
+  afficherHpLexie.afficheText();
   
-  String testEnemyAtk;
-  turnCurrentDmg = atkEnemy;
-  
-  if (nbAtk == 1) {
-    //attaque 1
-    testEnemyAtk = "Atk 1 ennemi";
-    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
-    isEnnemyAtk = false;
-  } else if (nbAtk == 2) {
-    //attaque 2
-    testEnemyAtk = "Atk 2 ennemi";
-    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
-    isEnnemyAtk = false;
-  } else {
-    //attaque 3
-    testEnemyAtk = "Atk 3 ennemi";
-    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
-    isEnnemyAtk = false;
-  }
-  
-  
-  if (isEnnemyAtk == false) {
-    fightRotationNb = 1;
-  }
-}
+  afficherHpTeam1 = new afficherTexte(width*0.15, height-20, 100, 20, txtHpTeam1);
+  txtHpTeam1 = currentHpTeammate1 + "/" + hpTeammate1;
+  afficherHpTeam1.afficheText();
 
-
-
-////////////////////////////////////////////////////////////////////////////
-
-
-
-void mousePressed() {
-  //si le bouton est cliqué, changez couleurFond
-  if (attaques.estClique() && newTeammates == true) {
-    couleurBtn = color(random(255), random(255), random(255));
-    if (teamMember == 1 && attaques.getEtiquette() == "Attaque 1") {
-      Teammate1 = placeholder1;
-      team[teamMember] = new sonEquipe(width*0.26, height*0.72, 200, Teammate1);
-    } else if (teamMember == 2 && attaques.getEtiquette() == "Attaque 1") {
-      Teammate2 = placeholder2;
-      team[teamMember] = new sonEquipe(width*0.49, height*0.72, 200, Teammate2);
-    } else if (teamMember == 3 && attaques.getEtiquette() == "Attaque 1") {
-      Teammate3 = placeholder3;
-      team[teamMember] = new sonEquipe(width*0.72, height*0.72, 200, Teammate3);
-    }
-    teamMember++;
-  } else if (newTeammates == false) {
-    //println("la team est pleine!!");
-  }
-
-  if (isLexieAtk == true) {
-    if( LexieAtk1.estClique() ) {
-      turnCurrentAtk = "Lexie attaque";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      isLexieAtk = false;
-    } else if ( LexieAtk2.estClique() ) {
-      turnCurrentAtk = "Lexie défends";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      isLexieAtk = false;
-    } else if ( LexieAtk3.estClique() ) {
-      turnCurrentAtk = "Lexie power";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      isLexieAtk = false;
-    }
-  }
-
-  if (Teammate1Atk1.estClique() && isTeammateAtk1 == true || Teammate1Atk2.estClique() && isTeammateAtk1 == true || Teammate1Atk3.estClique() && isTeammateAtk1 == true) {
-      turnCurrentAtk = "Teammate 1 attaque";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    fightRotationNb++;
-    isTeammateAtk1 = false;
-  }
-
-  if (Teammate2Atk1.estClique() && isTeammateAtk2 == true || Teammate2Atk2.estClique() && isTeammateAtk2 == true || Teammate2Atk3.estClique() && isTeammateAtk2 == true) {
-      turnCurrentAtk = "Teammate 2 attaque";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    fightRotationNb++;
-    isTeammateAtk2 = false;
-  }
-
-  if (Teammate3Atk1.estClique() && isTeammateAtk3 == true || Teammate3Atk2.estClique() && isTeammateAtk3 == true || Teammate3Atk3.estClique() && isTeammateAtk3 == true) {
-      turnCurrentAtk = "Teammate 3 attaque";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    fightRotationNb++;
-    isTeammateAtk3 = false;
-  }
-}
-
-void turnCurrentFight(String atkName, int atkDmg) {
- println("atkName: " + atkName + " + atkDmg: " + atkDmg);
- fightRotationNb++;
 }

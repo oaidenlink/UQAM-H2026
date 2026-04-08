@@ -24,6 +24,7 @@ class btnAttacks {
     rect(x, y, w, h); //forme du bouton
     fill(255); //couleur du texte
     textAlign(CENTER);
+    textSize(16);
     text(etiquette, x+w/2, y+h/2);
     // ?? ta mere
   }
