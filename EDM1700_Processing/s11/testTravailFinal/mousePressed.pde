@@ -1,20 +1,27 @@
 void mousePressed() {
   //si le bouton est cliqué, changez couleurFond
-  if (attaques.estClique() && newTeammates == true) {
-    couleurBtn = color(random(255), random(255), random(255));
-    if (teamMember == 1 && attaques.getEtiquette() == "Attaque 1") {
-      Teammate1 = placeholder1;
+  if (ajouter.estClique() && newTeammates == true) {
+
+    if (teamMember == 1 && ajouter.getEtiquette() == "Ajouter à l'équipe?") {
+      Teammate1 = Enemy;
       team[teamMember] = new sonEquipe(width*0.26, height*0.72, 200, Teammate1);
-    } else if (teamMember == 2 && attaques.getEtiquette() == "Attaque 1") {
-      Teammate2 = placeholder2;
+    } else if (teamMember == 2 && ajouter.getEtiquette() == "Ajouter à l'équipe?") {
+      Teammate2 = Enemy;
       team[teamMember] = new sonEquipe(width*0.49, height*0.72, 200, Teammate2);
-    } else if (teamMember == 3 && attaques.getEtiquette() == "Attaque 1") {
-      Teammate3 = placeholder3;
+    } else if (teamMember == 3 && ajouter.getEtiquette() == "Ajouter à l'équipe?") {
+      Teammate3 = Enemy;
       team[teamMember] = new sonEquipe(width*0.72, height*0.72, 200, Teammate3);
     }
+
+    fightRotationNb++; // idk if this works
+    newEnemy();
+    isEnemyDead = false;
     teamMember++;
-  } else if (newTeammates == false) {
-    //println("la team est pleine!!");
+    
+  } else if ( refuser.estClique() ) {
+    fightRotationNb++; // idk if this works
+    newEnemy();
+    isEnemyDead = false;
   }
 
 
@@ -37,31 +44,62 @@ void mousePressed() {
   }
 
 
-
-
-  if (Teammate1Atk1.estClique() && isTeammateAtk1 == true || Teammate1Atk2.estClique() && isTeammateAtk1 == true || Teammate1Atk3.estClique() && isTeammateAtk1 == true) {
-    turnCurrentAtk = "Teammate 1 attaque";
-    turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    fightRotationNb++;
-    isTeammateAtk1 = false;
+  if (isTeammateAtk1 == true) {
+    if (Teammate1Atk1.estClique() ) {
+      turnCurrentAtk = "Teammate 1 attaque";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk1 = false;
+    } else if ( Teammate1Atk2.estClique() ) {
+      turnCurrentAtk = "Teammate 1 defends";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk1 = false;
+    } else if ( Teammate1Atk3.estClique() ) {
+      turnCurrentAtk = "Teammate 1 power";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk1 = false;
+    }
   }
 
-  if (Teammate2Atk1.estClique() && isTeammateAtk2 == true || Teammate2Atk2.estClique() && isTeammateAtk2 == true || Teammate2Atk3.estClique() && isTeammateAtk2 == true) {
-    turnCurrentAtk = "Teammate 2 attaque";
-    turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    fightRotationNb++;
-    isTeammateAtk2 = false;
+  if (isTeammateAtk2 == true) {
+    if (Teammate2Atk1.estClique() ) {
+      turnCurrentAtk = "Teammate 2 attaque";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk2 = false;
+    } else if ( Teammate2Atk2.estClique() ) {
+      turnCurrentAtk = "Teammate 2 defends";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk2 = false;
+    } else if ( Teammate2Atk3.estClique() ) {
+      turnCurrentAtk = "Teammate 2 power";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk2 = false;
+    }
   }
 
-  if (Teammate3Atk1.estClique() && isTeammateAtk3 == true || Teammate3Atk2.estClique() && isTeammateAtk3 == true || Teammate3Atk3.estClique() && isTeammateAtk3 == true) {
-    turnCurrentAtk = "Teammate 3 attaque";
-    turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-    fightRotationNb++;
-    isTeammateAtk3 = false;
+  if (isTeammateAtk3 == true) {
+    if ( Teammate3Atk1.estClique() ) {
+      turnCurrentAtk = "Teammate 3 attaque";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk3 = false;
+    } else if ( Teammate3Atk2.estClique() ) {
+      turnCurrentAtk = "Teammate 3 defends";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk3 = false;
+    } else if ( Teammate3Atk3.estClique() ) {
+      turnCurrentAtk = "Teammate 3 power";
+      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+      isTeammateAtk3 = false;
+    }
   }
 }
 
 void turnCurrentFight(String atkName, int atkDmg) {
   println("atkName: " + atkName + " + atkDmg: " + atkDmg);
-  fightRotationNb++;
+  if (isEnnemyAtk == false && isEnemyDead == false) {
+    currentHpEnemy -= atkDmg;
+  }
+
+  if (isEnemyDead == false) {
+    fightRotationNb++;
+  }
 }

@@ -53,7 +53,7 @@ void fightRotation() {
   if (fightRotationNb == 3 && isEnnemyAtk == false) {
     isTeammateAtk2 = true;
   } else {
-    isTeammateAtk3 = false;
+    isTeammateAtk2 = false;
   }
 
   if (fightRotationNb == 4 && isEnnemyAtk == false) {

@@ -6,7 +6,6 @@ class btnAttacks {
   float w; //largeur du bouton
   float h; //hauteur du bouton
   String etiquette; //texte qui s'affichera sur le bouton
-  color coulClique;
 
   // 2. CONSTRUCTEUR
   btnAttacks(float bx, float by, float bw, float bh, String bEtiquette) {
@@ -19,7 +18,7 @@ class btnAttacks {
 
   // 3. MÉTHODE — afficher le bouton
   void afficher() {
-    fill(coulClique); //couleur du bouton
+    fill(0); //couleur du bouton
     stroke(255);
     rect(x, y, w, h); //forme du bouton
     fill(255); //couleur du texte
@@ -29,13 +28,6 @@ class btnAttacks {
     // ?? ta mere
   }
   
-  void couleurBtn(boolean coul) {
-    if (coul == true) {
-      coulClique = #484848;
-    } else {
-      coulClique = 0;
-    }
-  }
 
   // 4. MÉTHODE — est-ce que la souris est en train de cliquer sur le bouton ?
   boolean estClique() {

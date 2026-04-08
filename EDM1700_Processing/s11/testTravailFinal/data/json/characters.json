@@ -1,0 +1,10 @@
+[
+	{
+		PImage Dynamo;
+		int DynamoHp = 16;
+		int DynamoAtk = 3;
+		String DynamoSkill = "KINETIC PULSE";
+		String DynamoUlt = "SINGULARITY";
+		isClaimable = true;
+	}
+]
