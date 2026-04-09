@@ -20,7 +20,6 @@
 
 // variaables
 JSONArray characters;
-JSONObject Dynamo;
 sonEquipe[] team = new sonEquipe[4];
 
 PImage placeholder1;
@@ -56,7 +55,7 @@ btnAttacks Teammate1Atk1;
 btnAttacks Teammate1Atk2;
 btnAttacks Teammate1Atk3;
 boolean isTeammateAtk1 = false;
-int hpTeammate1 = 12;
+int hpTeammate1;
 int currentHpTeammate1;
 int atkTeammate1;
 String txtHpTeam1;
@@ -65,7 +64,7 @@ btnAttacks Teammate2Atk1;
 btnAttacks Teammate2Atk2;
 btnAttacks Teammate2Atk3;
 boolean isTeammateAtk2 = false;
-int hpTeammate2 = 10;
+int hpTeammate2;
 int currentHpTeammate2;
 int atkTeammate2;
 String txtHpTeam2;
@@ -74,7 +73,7 @@ btnAttacks Teammate3Atk1;
 btnAttacks Teammate3Atk2;
 btnAttacks Teammate3Atk3;
 boolean isTeammateAtk3 = false;
-int hpTeammate3 = 14;
+int hpTeammate3;
 int currentHpTeammate3;
 int atkTeammate3;
 String txtHpTeam3;
@@ -96,6 +95,7 @@ int teamMember = 1;
 int fightRotationNb = 1;
 String turnCurrentAtk;
 int turnCurrentDmg;
+int numRandom;
 
 boolean newTeammates = true;
 

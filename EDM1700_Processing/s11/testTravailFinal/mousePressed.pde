@@ -1,19 +1,33 @@
 void mousePressed() {
-  //si le bouton est cliqué, changez couleurFond
+  JSONArray Characters = loadJSONArray("./json/characters.json");
+  JSONObject selectChara = Characters.getJSONObject(numRandom); 
+  
+  //si le bouton est cliqué
   if (ajouter.estClique() && newTeammates == true) {
+    
+    if (ajouter.getEtiquette() == "Ajouter à l'équipe?" && selectChara.getBoolean("isClaimable") == true) {
 
-    if (teamMember == 1 && ajouter.getEtiquette() == "Ajouter à l'équipe?") {
-      Teammate1 = Enemy;
-      team[teamMember] = new sonEquipe(width*0.26, height*0.72, 200, Teammate1);
-    } else if (teamMember == 2 && ajouter.getEtiquette() == "Ajouter à l'équipe?") {
-      Teammate2 = Enemy;
-      team[teamMember] = new sonEquipe(width*0.49, height*0.72, 200, Teammate2);
-    } else if (teamMember == 3 && ajouter.getEtiquette() == "Ajouter à l'équipe?") {
-      Teammate3 = Enemy;
-      team[teamMember] = new sonEquipe(width*0.72, height*0.72, 200, Teammate3);
+      if (teamMember == 1) {
+        Teammate1 = Enemy;
+        team[teamMember] = new sonEquipe(width*0.26, height*0.72, 200, Teammate1);
+        hpTeammate1 = selectChara.getInt("Hp");
+        atkTeammate1 = selectChara.getInt("Atk");
+      } else if (teamMember == 2) {
+        Teammate2 = Enemy;
+        team[teamMember] = new sonEquipe(width*0.49, height*0.72, 200, Teammate2);
+        hpTeammate2 = selectChara.getInt("Hp");
+        atkTeammate2 = selectChara.getInt("Atk");
+      } else if (teamMember == 3) {
+        Teammate3 = Enemy;
+        team[teamMember] = new sonEquipe(width*0.72, height*0.72, 200, Teammate3);
+        hpTeammate3 = selectChara.getInt("Hp");
+        atkTeammate3 = selectChara.getInt("Atk");
+      }
+      
     }
-
+    
     fightRotationNb++; // idk if this works
+    selectChara.setBoolean("isClaimable", false);
     newEnemy();
     isEnemyDead = false;
     teamMember++;

@@ -1,12 +1,8 @@
 void init() {
   /*
       list of bitches
-    Seven (deadlock)
     Bebop? (deadlock)
-    Spamton
-    Tenna
     Robot Giant from that one show
-    Registeel
     
       random fights (not characters)
     rats
@@ -22,11 +18,9 @@ void init() {
   */
   
   // TEST PLACEHOLDER INFO (dans un tableau?)
-  Dynamo = loadImage("DynamoWee.png");
-  //DynamoHp = 16;
-  //DynamoAtk = 3;
-  //DynamoSkill = "KINETIC PULSE";
-  //DynamoUlt = "SINGULARITY";
+  JSONArray Characters = loadJSONArray("./json/characters.json");
+  JSONObject selectChara = Characters.getJSONObject(0); // test
+  Enemy = loadImage(selectChara.getString("Img")); // test
   
  
   
