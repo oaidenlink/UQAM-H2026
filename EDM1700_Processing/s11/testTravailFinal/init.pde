@@ -85,15 +85,20 @@ void init() {
 }
 
 void reload() {
+  currentHpLexie = hpLexie;
+  
   Teammate1Atk = new btnAttacks(width*0.4, height*0.51, 170, 50, "ATTACK");
   Teammate1Skill = new btnAttacks(width*0.4, height*0.585, 170, 50, txtSkillTeam1);
   Teammate1Ult = new btnAttacks(width*0.4, height*0.66, 170, 50, txtUltTeam1);
+  currentHpTeammate1 = hpTeammate1;
   
   Teammate2Atk = new btnAttacks(width*0.63, height*0.51, 170, 50, "ATTACK");
   Teammate2Skill = new btnAttacks(width*0.63, height*0.585, 170, 50, txtSkillTeam2);
   Teammate2Ult = new btnAttacks(width*0.63, height*0.66, 170, 50, txtUltTeam2);
+  currentHpTeammate2 = hpTeammate2;
   
   Teammate3Atk = new btnAttacks(width*0.86, height*0.51, 170, 50, "ATTACK");
   Teammate3Skill = new btnAttacks(width*0.86, height*0.585, 170, 50, txtSkillTeam3);
   Teammate3Ult = new btnAttacks(width*0.86, height*0.66, 170, 50, txtUltTeam3);
+  currentHpTeammate3 = hpTeammate3;
 }

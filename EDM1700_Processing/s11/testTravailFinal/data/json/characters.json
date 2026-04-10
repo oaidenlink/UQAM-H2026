@@ -1,5 +1,7 @@
 [
 	{
+		"Name" : "Dynamo",
+		"Death" : "Dynamo has been slain!",
 		"Img" : "DynamoWee.png",
 		"MaxHp" : 16,
 		"Hp" : 16,
@@ -10,6 +12,8 @@
 		"isRat" : false
 	},
 	{
+		"Name" : "Registeel",
+		"Death" : "Registeel has been defeated!",
 		"Img" : "registeel.png",
 		"MaxHp" : 30,
 		"Hp" : 30,
@@ -20,6 +24,8 @@
 		"isRat" : false
 	},
 	{
+		"Name" : "Seven",
+		"Death" : "Seven has been slain!",
 		"Img" : "Seven.png",
 		"MaxHp" : 20,
 		"Hp" : 20,
@@ -30,6 +36,8 @@
 		"isRat" : false
 	},
 	{
+		"Name" : "Spamton",
+		"Death" : "Spamton is crashing out!",
 		"Img" : "Spamton.png",
 		"MaxHp" : 10,
 		"Hp" : 10,
@@ -40,6 +48,8 @@
 		"isRat" : false
 	},
 	{
+		"Name" : "Tenna",
+		"Death" : "Tenna has been slain!",
 		"Img" : "Tenna.png",
 		"MaxHp" : 23,
 		"Hp" : 23,
@@ -50,6 +60,8 @@
 		"isRat" : false
 	},
 	{
+		"Name" : "The Rat",
+		"Death" : "The Rat is exploding! (The next enemy will receive damage upon entering)",
 		"Img" : "rat.png",
 		"MaxHp" : 7,
 		"Hp" : 7,

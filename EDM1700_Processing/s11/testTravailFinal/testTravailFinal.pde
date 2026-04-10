@@ -1,5 +1,5 @@
 /**
-   TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
+ TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
  attaques fonctionnelles
  ennemis  fonctionnels
  tour par tour shit machin
@@ -13,7 +13,7 @@
  art
  animations???
  SAVE FILE TABARNAK
-*/
+ */
 
 
 
@@ -44,13 +44,15 @@ afficherTexte afficherHpTeam3; // test???
 afficherTexte afficherHpEnemy;
 
 afficherFightTxt afficherFightText;
+afficherFightTxt afficherFightTextEnemy;
 String texteDeFight = "The fight starts now!";
+String texteDeFightEnemy = "The fight starts now!";
 
 btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
 btnAttacks LexieAtk3;
 boolean isLexieAtk = false;
-int hpLexie = 10;
+int hpLexie = 25;
 int currentHpLexie;
 int atkLexie =  4;
 String txtHpLexie;
@@ -109,6 +111,12 @@ int numRandom;
 boolean isChoosing = false;
 boolean newTeammates = true;
 
+// SOURCE: https://forum.processing.org/two/discussion/8084/how-do-i-display-a-message-for-a-few-seconds.html
+boolean displayMessage = false;
+boolean displayMessageEnemy = false;
+int startTime;
+final int DISPLAY_DURATION = 1000; // in milliseconds = 1s
+
 //boolean canUlt = true;
 int bonusDmg = 2;
 int bonusHealth = 3;
@@ -124,12 +132,11 @@ void setup() {
   init();
 
   couleurBtn = #9BD8D0;
-  
-  team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5);
-  
+
+  team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5, "Lexie");
+
   ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?");
   refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!");
-
 }
 
 
@@ -138,24 +145,47 @@ void setup() {
 
 // draw
 void draw() {
+  JSONArray Characters = loadJSONArray("./json/characters.json");
+  JSONObject selectChara = Characters.getJSONObject(numRandom);
+
   background(couleurBtn);
-  
-   //box
+
+  println(startTime);
+
+  //box
   color(0);
   rect(width*0.7, 50, 400, height/2);
-  fill(255);
-  afficherFightText = new afficherFightTxt(width*0.71, 100, 370, 200, texteDeFight);
-  afficherFightText.afficheText();
-  
-  if (isChoosing == true && newTeammates == true) {
+
+  // SOURCE: https://forum.processing.org/two/discussion/8084/how-do-i-display-a-message-for-a-few-seconds.html
+  if (displayMessage == true) {
+    fill(255);
+    afficherFightText = new afficherFightTxt(width*0.71, 100, 370, 200, texteDeFight);
+    afficherFightText.afficheText();
+    if (millis() - startTime > DISPLAY_DURATION) {
+      // Stop displaying the message, thus resume the ball moving
+      displayMessage = false;
+    }
+  }
+  if (displayMessageEnemy == true) {
+    fill(255);
+    afficherFightTextEnemy = new afficherFightTxt(width*0.71, 300, 370, 200, texteDeFightEnemy); // CHECK LA TAILLE YA QQCHOSE DE OFF
+    afficherFightTextEnemy.afficheText();
+    if (millis() - startTime > DISPLAY_DURATION) {
+      // Stop displaying the message, thus resume the ball moving
+      displayMessageEnemy = false;
+    }
+  }
+
+
+  if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {
     ajouter.afficher();
     refuser.afficher();
-  } else if (isChoosing == true && newTeammates == false) {
+  } else if (selectChara.getBoolean("isClaimable") == false && selectChara.getBoolean("isRat") == false || isChoosing == true && newTeammates == false) {
     refuser.afficher();
   }
-  
+
   image(Enemy, width/2-250, height/2-250, 500, 500);
-  
+
   for (int i = 0; i < team.length; i++) {
     if (team[i] != null) {
       team[i].afficher();
@@ -168,7 +198,4 @@ void draw() {
 
   fightRotation();
   manageHP();
-  
-  
-
 }

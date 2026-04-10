@@ -63,6 +63,10 @@ void fightRotation() {
   }
 }
 
-void changerTexteFight(String currentChara, String victime, String nomSkill) {
-  texteDeFight = currentChara + " utilise " + nomSkill + " sur " + victime;
+void changerTexteFight(boolean isAlly, String currentChara, String victime, String nomSkill) {
+  if (isAlly == true) {
+    texteDeFight = currentChara + " utilise " + nomSkill + " sur " + victime;
+  } else if (isAlly == false) {
+    texteDeFightEnemy = currentChara + " utilise " + nomSkill + " sur " + victime;
+  }
 }
