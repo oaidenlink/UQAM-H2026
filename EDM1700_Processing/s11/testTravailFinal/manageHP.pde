@@ -24,8 +24,9 @@ void manageHP() {
   }
   
   if (currentHpEnemy <= 0) {
+    isChoosing = true;
     isEnemyDead = true;
-    ajouter.afficher();
-    refuser.afficher();
+    txtHpEnemy = "";
+    
   }
 }

@@ -96,6 +96,7 @@ int fightRotationNb = 1;
 String turnCurrentAtk;
 int turnCurrentDmg;
 int numRandom;
+boolean isChoosing = false;
 
 boolean newTeammates = true;
 
@@ -126,6 +127,11 @@ void setup() {
 void draw() {
   background(couleurBtn);
   
+  if (isChoosing == true) {
+    ajouter.afficher();
+    refuser.afficher();
+  }
+  
   image(Enemy, width/2-250, height/2-250, 500, 500);
   
   for (int i = 0; i < team.length; i++) {
@@ -140,5 +146,7 @@ void draw() {
 
   fightRotation();
   manageHP();
+  
+  
 
 }

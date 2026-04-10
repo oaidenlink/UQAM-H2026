@@ -3,39 +3,49 @@ void mousePressed() {
   JSONObject selectChara = Characters.getJSONObject(numRandom); 
   
   //si le bouton est cliqué
-  if (ajouter.estClique() && newTeammates == true) {
+  if (ajouter.estClique() && newTeammates == true && isChoosing == true && selectChara.getBoolean("isClaimable") == true) {
     
-    if (ajouter.getEtiquette() == "Ajouter à l'équipe?" && selectChara.getBoolean("isClaimable") == true) {
+    if (ajouter.getEtiquette() == "Ajouter à l'équipe?" && selectChara.getBoolean("isRat") == false) {
 
       if (teamMember == 1) {
         Teammate1 = Enemy;
         team[teamMember] = new sonEquipe(width*0.26, height*0.72, 200, Teammate1);
-        hpTeammate1 = selectChara.getInt("Hp");
+        //selectChara.setInt("Hp", selectChara.getInt("MaxHp") );
+        hpTeammate1 = selectChara.getInt("MaxHp");
+        currentHpTeammate1 = selectChara.getInt("Hp");
         atkTeammate1 = selectChara.getInt("Atk");
       } else if (teamMember == 2) {
         Teammate2 = Enemy;
         team[teamMember] = new sonEquipe(width*0.49, height*0.72, 200, Teammate2);
-        hpTeammate2 = selectChara.getInt("Hp");
+        //selectChara.setInt("Hp", selectChara.getInt("MaxHp") );
+        hpTeammate1 = selectChara.getInt("MaxHp");
+        currentHpTeammate1 = selectChara.getInt("Hp");
         atkTeammate2 = selectChara.getInt("Atk");
       } else if (teamMember == 3) {
         Teammate3 = Enemy;
         team[teamMember] = new sonEquipe(width*0.72, height*0.72, 200, Teammate3);
-        hpTeammate3 = selectChara.getInt("Hp");
+        //selectChara.setInt("Hp", selectChara.getInt("MaxHp") );
+        hpTeammate1 = selectChara.getInt("MaxHp");
+        currentHpTeammate1 = selectChara.getInt("Hp");
         atkTeammate3 = selectChara.getInt("Atk");
       }
       
-    }
+    } 
     
-    fightRotationNb++; // idk if this works
     selectChara.setBoolean("isClaimable", false);
+    fightRotationNb = 1;
     newEnemy();
     isEnemyDead = false;
+    isChoosing = false;
     teamMember++;
     
-  } else if ( refuser.estClique() ) {
-    fightRotationNb++; // idk if this works
+  } else if ( refuser.estClique() || selectChara.getBoolean("isClaimable") == false) {
+    selectChara.setBoolean("isClaimable", false);
+    fightRotationNb = 1;
     newEnemy();
     isEnemyDead = false;
+    isChoosing = false;
+    println("I AM THE RAT AAAAAAAAAAAAH ");
   }
 
 
@@ -108,7 +118,7 @@ void mousePressed() {
 }
 
 void turnCurrentFight(String atkName, int atkDmg) {
-  println("atkName: " + atkName + " + atkDmg: " + atkDmg);
+  //println("atkName: " + atkName + " + atkDmg: " + atkDmg);
   if (isEnnemyAtk == false && isEnemyDead == false) {
     currentHpEnemy -= atkDmg;
   }

@@ -34,9 +34,23 @@ void newEnemy() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   numRandom = int(random( 0, Characters.size() ));
   JSONObject selectChara = Characters.getJSONObject(numRandom); 
-  Enemy = loadImage(selectChara.getString("Img")); 
   
-  hpEnemy = selectChara.getInt("Hp");
-  currentHpEnemy = hpEnemy;
-  fightRotationNb = 1;
+  println("je suis numRandom avant le if : " + numRandom);
+  
+  
+  if (selectChara.getBoolean("isClaimable") == false) {
+    numRandom = 5;
+    JSONObject selectChara2 = Characters.getJSONObject(numRandom); 
+    Enemy = loadImage(selectChara2.getString("Img")); 
+    hpEnemy = selectChara2.getInt("MaxHp");
+    currentHpEnemy = hpEnemy;
+  } else {
+    Enemy = loadImage(selectChara.getString("Img")); 
+    hpEnemy = selectChara.getInt("MaxHp");
+    currentHpEnemy = hpEnemy;
+  }
+  
+  println("je suis numRandom APRES le if : " + numRandom);
+  
+  
 }
