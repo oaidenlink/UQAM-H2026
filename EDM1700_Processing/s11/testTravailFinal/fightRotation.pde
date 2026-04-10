@@ -12,23 +12,23 @@ void fightRotation() {
     }
     if (isTeammateAtk1 == true) {
       team[fightRotationNb-1].attackBox();
-      Teammate1Atk1.afficher();
-      Teammate1Atk2.afficher();
-      Teammate1Atk3.afficher();
+      Teammate1Atk.afficher();
+      Teammate1Skill.afficher();
+      Teammate1Ult.afficher();
       turnCurrentDmg = atkTeammate1;
     }
     if (isTeammateAtk2 == true) {
       team[fightRotationNb-1].attackBox();
-      Teammate2Atk1.afficher();
-      Teammate2Atk2.afficher();
-      Teammate2Atk3.afficher();
+      Teammate2Atk.afficher();
+      Teammate2Skill.afficher();
+      Teammate2Ult.afficher();
       turnCurrentDmg = atkTeammate2;
     }
     if (isTeammateAtk3 == true) {
       team[fightRotationNb-1].attackBox();
-      Teammate3Atk1.afficher();
-      Teammate3Atk2.afficher();
-      Teammate3Atk3.afficher();
+      Teammate3Atk.afficher();
+      Teammate3Skill.afficher();
+      Teammate3Ult.afficher();
       turnCurrentDmg = atkTeammate3;
     }
   } else if (fightRotationNb > teamMember) { //modify this plz

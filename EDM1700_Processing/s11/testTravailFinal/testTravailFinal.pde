@@ -51,31 +51,37 @@ int currentHpLexie;
 int atkLexie =  4;
 String txtHpLexie;
 
-btnAttacks Teammate1Atk1;
-btnAttacks Teammate1Atk2;
-btnAttacks Teammate1Atk3;
+btnAttacks Teammate1Atk;
+btnAttacks Teammate1Skill;
+btnAttacks Teammate1Ult;
 boolean isTeammateAtk1 = false;
 int hpTeammate1;
 int currentHpTeammate1;
 int atkTeammate1;
+String txtSkillTeam1;
+String txtUltTeam1;
 String txtHpTeam1;
 
-btnAttacks Teammate2Atk1;
-btnAttacks Teammate2Atk2;
-btnAttacks Teammate2Atk3;
+btnAttacks Teammate2Atk;
+btnAttacks Teammate2Skill;
+btnAttacks Teammate2Ult;
 boolean isTeammateAtk2 = false;
 int hpTeammate2;
 int currentHpTeammate2;
 int atkTeammate2;
+String txtSkillTeam2;
+String txtUltTeam2;
 String txtHpTeam2;
 
-btnAttacks Teammate3Atk1;
-btnAttacks Teammate3Atk2;
-btnAttacks Teammate3Atk3;
+btnAttacks Teammate3Atk;
+btnAttacks Teammate3Skill;
+btnAttacks Teammate3Ult;
 boolean isTeammateAtk3 = false;
 int hpTeammate3;
 int currentHpTeammate3;
 int atkTeammate3;
+String txtSkillTeam3;
+String txtUltTeam3;
 String txtHpTeam3;
 
 boolean isEnnemyAtk = false;
