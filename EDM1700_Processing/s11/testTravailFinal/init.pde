@@ -30,6 +30,27 @@ void init() {
   placeholder4 = loadImage("remsilly.png");
   placeholder5 = loadImage("remviolence.png");
   
+  if (txtSkillTeam1 == null) {
+    txtSkillTeam1 = "Skill";
+  }
+  if (txtUltTeam1 == null) {
+    txtUltTeam1 = "Ult";
+  }
+  
+  if (txtSkillTeam2 == null) {
+    txtSkillTeam2 = "Skill";
+  }
+  if (txtUltTeam2 == null) {
+    txtUltTeam2 = "Ult";
+  }
+  
+  if (txtSkillTeam3 == null) {
+    txtSkillTeam3 = "Skill";
+  }
+  if (txtUltTeam3 == null) {
+    txtUltTeam3 = "Ult";
+  }
+  
   // INIT LEXIE -----------------------------------------------------------
   currentHpLexie = hpLexie;
   txtHpLexie = currentHpLexie + "/" + hpLexie;
@@ -44,33 +65,15 @@ void init() {
   currentHpTeammate1 = hpTeammate1;
   txtHpTeam1 = currentHpTeammate1 + "/" + hpTeammate1;
   
-  Teammate1Atk = new btnAttacks(width*0.4, height*0.51, 170, 50, "ATTACK");
-  Teammate1Skill = new btnAttacks(width*0.4, height*0.585, 170, 50, "skill");
-  Teammate1Ult = new btnAttacks(width*0.4, height*0.66, 170, 50, "ult");
-  //Teammate1Skill = new btnAttacks(width*0.4, height*0.585, 170, 50, txtSkillTeam1);
-  //Teammate1Ult = new btnAttacks(width*0.4, height*0.66, 170, 50, txtUltTeam1);
-  
   
   // INIT TEAMMATE 2 -----------------------------------------------------------
   currentHpTeammate2 = hpTeammate2;
   txtHpTeam2 = currentHpTeammate2 + "/" + hpTeammate2;
   
-  Teammate2Atk = new btnAttacks(width*0.63, height*0.51, 170, 50, "ATTACK");
-  Teammate2Skill = new btnAttacks(width*0.63, height*0.585, 170, 50, "skill");
-  Teammate2Ult = new btnAttacks(width*0.63, height*0.66, 170, 50, "ult");
-  //Teammate2Skill = new btnAttacks(width*0.63, height*0.585, 170, 50, txtSkillTeam2);
-  //Teammate2Ult = new btnAttacks(width*0.63, height*0.66, 170, 50, txtUltTeam2);
-  
   
   // INIT TEAMMATE 3 -----------------------------------------------------------
   currentHpTeammate3 = hpTeammate3;
   txtHpTeam3 = currentHpTeammate3 + "/" + hpTeammate3;
-  
-  Teammate3Atk = new btnAttacks(width*0.86, height*0.51, 170, 50, "ATTACK");
-  Teammate3Skill = new btnAttacks(width*0.86, height*0.585, 170, 50, "skill");
-  Teammate3Ult = new btnAttacks(width*0.86, height*0.66, 170, 50, "ult");
-  //Teammate3Skill = new btnAttacks(width*0.86, height*0.585, 170, 50, txtSkillTeam3);
-  //Teammate3Ult = new btnAttacks(width*0.86, height*0.66, 170, 50, txtUltTeam3);
   
   
   // INIT ENEMY -----------------------------------------------------------
@@ -79,4 +82,18 @@ void init() {
   
   
   
+}
+
+void reload() {
+  Teammate1Atk = new btnAttacks(width*0.4, height*0.51, 170, 50, "ATTACK");
+  Teammate1Skill = new btnAttacks(width*0.4, height*0.585, 170, 50, txtSkillTeam1);
+  Teammate1Ult = new btnAttacks(width*0.4, height*0.66, 170, 50, txtUltTeam1);
+  
+  Teammate2Atk = new btnAttacks(width*0.63, height*0.51, 170, 50, "ATTACK");
+  Teammate2Skill = new btnAttacks(width*0.63, height*0.585, 170, 50, txtSkillTeam2);
+  Teammate2Ult = new btnAttacks(width*0.63, height*0.66, 170, 50, txtUltTeam2);
+  
+  Teammate3Atk = new btnAttacks(width*0.86, height*0.51, 170, 50, "ATTACK");
+  Teammate3Skill = new btnAttacks(width*0.86, height*0.585, 170, 50, txtSkillTeam3);
+  Teammate3Ult = new btnAttacks(width*0.86, height*0.66, 170, 50, txtUltTeam3);
 }

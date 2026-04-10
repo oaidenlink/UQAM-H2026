@@ -62,3 +62,7 @@ void fightRotation() {
     isTeammateAtk3 = false;
   }
 }
+
+void changerTexteFight(String currentChara, String victime, String nomSkill) {
+  texteDeFight = currentChara + " utilise " + nomSkill + " sur " + victime;
+}

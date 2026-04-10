@@ -36,11 +36,15 @@ PImage Enemy;
 
 btnAttacks ajouter; // test one
 btnAttacks refuser; // test one
+
 afficherTexte afficherHpLexie; // test???
 afficherTexte afficherHpTeam1; // test???
 afficherTexte afficherHpTeam2; // test???
 afficherTexte afficherHpTeam3; // test???
 afficherTexte afficherHpEnemy;
+
+afficherFightTxt afficherFightText;
+String texteDeFight = "The fight starts now!";
 
 btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
@@ -103,8 +107,11 @@ String turnCurrentAtk;
 int turnCurrentDmg;
 int numRandom;
 boolean isChoosing = false;
-
 boolean newTeammates = true;
+
+//boolean canUlt = true;
+int bonusDmg = 2;
+int bonusHealth = 3;
 
 
 
@@ -113,6 +120,7 @@ boolean newTeammates = true;
 // setup
 void setup() {
   size(1400, 800);
+  newEnemy();
   init();
 
   couleurBtn = #9BD8D0;
@@ -120,9 +128,8 @@ void setup() {
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5);
   
   ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?");
-  refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Refuser de l'aider");
+  refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!");
 
-  newEnemy();
 }
 
 
@@ -133,8 +140,17 @@ void setup() {
 void draw() {
   background(couleurBtn);
   
-  if (isChoosing == true) {
+   //box
+  color(0);
+  rect(width*0.7, 50, 400, height/2);
+  fill(255);
+  afficherFightText = new afficherFightTxt(width*0.71, 100, 370, 200, texteDeFight);
+  afficherFightText.afficheText();
+  
+  if (isChoosing == true && newTeammates == true) {
     ajouter.afficher();
+    refuser.afficher();
+  } else if (isChoosing == true && newTeammates == false) {
     refuser.afficher();
   }
   

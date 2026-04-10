@@ -8,12 +8,12 @@ void mousePressed() {
     if (ajouter.getEtiquette() == "Ajouter à l'équipe?") {
 
       if (teamMember == 1) {
-        Teammate1 = Enemy;
         txtSkillTeam1 =  selectChara.getString("Skill");
         txtUltTeam1 = selectChara.getString("Ult");
         hpTeammate1 = selectChara.getInt("MaxHp");
         currentHpTeammate1 = selectChara.getInt("Hp");
         atkTeammate1 = selectChara.getInt("Atk");
+        Teammate1 = Enemy;
         team[teamMember] = new sonEquipe(width*0.26, height*0.72, 200, Teammate1);
       } else if (teamMember == 2) {
         Teammate2 = Enemy;
@@ -119,6 +119,8 @@ void mousePressed() {
       isTeammateAtk3 = false;
     }
   }
+  
+  
 }
 
 void turnCurrentFight(String atkName, int atkDmg) {
