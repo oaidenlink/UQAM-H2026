@@ -20,6 +20,7 @@
 
 // variaables
 JSONArray characters;
+JSONArray Objets;
 sonEquipe[] team = new sonEquipe[4];
 
 PImage placeholder1;
@@ -36,6 +37,8 @@ PImage Enemy;
 
 btnAttacks ajouter; // test one
 btnAttacks refuser; // test one
+btnAttacks laFin;
+btnAttacks leWin;
 
 afficherTexte afficherHpLexie; // test???
 afficherTexte afficherHpTeam1; // test???
@@ -44,9 +47,11 @@ afficherTexte afficherHpTeam3; // test???
 afficherTexte afficherHpEnemy;
 
 afficherFightTxt afficherFightText;
+String texteDeFight;
 afficherFightTxt afficherFightTextEnemy;
-String texteDeFight = "The fight starts now!";
-String texteDeFightEnemy = "The fight starts now!";
+String texteDeFightEnemy;
+afficherFightTxt afficherWarning;
+String texteWarning = "Le rat va exploser et le prochain ennemi va perdre de la vie!";
 
 btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
@@ -56,6 +61,7 @@ int hpLexie = 25;
 int currentHpLexie;
 int atkLexie =  4;
 String txtHpLexie;
+boolean isLexieDead = false;
 
 btnAttacks Teammate1Atk;
 btnAttacks Teammate1Skill;
@@ -67,6 +73,7 @@ int atkTeammate1;
 String txtSkillTeam1;
 String txtUltTeam1;
 String txtHpTeam1;
+boolean isTeam1Dead = false;
 
 btnAttacks Teammate2Atk;
 btnAttacks Teammate2Skill;
@@ -78,6 +85,7 @@ int atkTeammate2;
 String txtSkillTeam2;
 String txtUltTeam2;
 String txtHpTeam2;
+boolean isTeam2Dead = false;
 
 btnAttacks Teammate3Atk;
 btnAttacks Teammate3Skill;
@@ -89,6 +97,7 @@ int atkTeammate3;
 String txtSkillTeam3;
 String txtUltTeam3;
 String txtHpTeam3;
+boolean isTeam3Dead = false;
 
 boolean isEnnemyAtk = false;
 int hpEnemy;
@@ -110,6 +119,10 @@ int turnCurrentDmg;
 int numRandom;
 boolean isChoosing = false;
 boolean newTeammates = true;
+boolean isLaFin = false;
+boolean isWin = false;
+
+float opacity = 0;
 
 // SOURCE: https://forum.processing.org/two/discussion/8084/how-do-i-display-a-message-for-a-few-seconds.html
 boolean displayMessage = false;
@@ -126,8 +139,9 @@ int bonusHealth = 3;
 /////////////////////////////////////////////////////////////////////////////////
 
 // setup
-void setup() {
+void setup() {  
   size(1400, 800);
+  
   newEnemy();
   init();
 
@@ -137,6 +151,9 @@ void setup() {
 
   ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?");
   refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!");
+  
+  laFin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?");
+  leWin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?");
 }
 
 
@@ -149,8 +166,6 @@ void draw() {
   JSONObject selectChara = Characters.getJSONObject(numRandom);
 
   background(couleurBtn);
-
-  println(startTime);
 
   //box
   color(0);
@@ -167,14 +182,14 @@ void draw() {
     }
   }
   if (displayMessageEnemy == true) {
-    fill(255);
-    afficherFightTextEnemy = new afficherFightTxt(width*0.71, 300, 370, 200, texteDeFightEnemy); // CHECK LA TAILLE YA QQCHOSE DE OFF
+    fill(#5F5F5F);
+    afficherFightTextEnemy = new afficherFightTxt(width*0.71, 270, 370, 200, texteDeFightEnemy); // CHECK LA TAILLE YA QQCHOSE DE OFF
     afficherFightTextEnemy.afficheText();
     if (millis() - startTime > DISPLAY_DURATION) {
-      // Stop displaying the message, thus resume the ball moving
       displayMessageEnemy = false;
     }
   }
+  
 
 
   if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {

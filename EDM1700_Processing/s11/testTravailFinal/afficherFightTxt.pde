@@ -21,13 +21,13 @@ class afficherFightTxt {
     textAlign(CENTER);
     
     fill(255); //couleur du texte
-    textSize(48);
+    textSize(36);
     text(etiquette, x-3, y, w, h);
     text(etiquette, x+3, y, w, h);
     text(etiquette, x, y-3, w, h);
     text(etiquette, x, y+3, w, h);
     
-    fill(0); //couleur du texte
+    fill(#363636); //couleur du texte
     text(etiquette, x, y, w, h);
     // ?? ta mere
   }

@@ -1,19 +1,19 @@
 [
 	{
 		"Name" : "Dynamo",
-		"Death" : "Dynamo has been slain!",
+		"Death" : "Dynamo est vaincu!",
 		"Img" : "DynamoWee.png",
 		"MaxHp" : 16,
 		"Hp" : 16,
 		"Atk" : 3,
 		"Skill" : "KINETIC PULSE",
-		"Ult" : "SINGULARITY",
+		"Ult" : "SINGULARITÉ",
 		"isClaimable" : true,
 		"isRat" : false
 	},
 	{
 		"Name" : "Registeel",
-		"Death" : "Registeel has been defeated!",
+		"Death" : "Registeel est vaincu!",
 		"Img" : "registeel.png",
 		"MaxHp" : 30,
 		"Hp" : 30,
@@ -25,12 +25,12 @@
 	},
 	{
 		"Name" : "Seven",
-		"Death" : "Seven has been slain!",
+		"Death" : "Seven est vaincu!",
 		"Img" : "Seven.png",
 		"MaxHp" : 20,
 		"Hp" : 20,
 		"Atk" : 4,
-		"Skill" : "STATIC CHARGE",
+		"Skill" : "CHARGE STATIQUE",
 		"Ult" : "STORM CLOUD",
 		"isClaimable" : true,
 		"isRat" : false
@@ -43,13 +43,13 @@
 		"Hp" : 10,
 		"Atk" : 3,
 		"Skill" : "[[BIG SHOT!!!]]",
-		"Ult" : "[[Hyperlink Blocked]]",
+		"Ult" : "[[Hyperlien Bloqué]]",
 		"isClaimable" : true,
 		"isRat" : false
 	},
 	{
 		"Name" : "Tenna",
-		"Death" : "Tenna has been slain!",
+		"Death" : "Tenna est vaincu!",
 		"Img" : "Tenna.png",
 		"MaxHp" : 23,
 		"Hp" : 23,

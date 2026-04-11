@@ -51,6 +51,10 @@ void mousePressed() {
     isChoosing = false;
     newEnemy();
   }
+  
+  if (laFin.estClique() || leWin.estClique()) {
+    init();
+  }
 
 
 
@@ -63,14 +67,12 @@ void mousePressed() {
       startTime = millis();
       isLexieAtk = false;
     } else if ( LexieAtk2.estClique() ) {
-      turnCurrentAtk = "Lexie défends";
       turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
       changerTexteFight(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk2.getEtiquette());
       displayMessage = true;
       startTime = millis();
       isLexieAtk = false;
     } else if ( LexieAtk3.estClique() ) {
-      turnCurrentAtk = "Lexie power";
       turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
       changerTexteFight(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk3.getEtiquette());
       displayMessage = true;
@@ -82,14 +84,12 @@ void mousePressed() {
 
   if (isTeammateAtk1 == true) {
     if (Teammate1Atk.estClique() ) {
-      turnCurrentAtk = "Teammate 1 attaque";
       turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
       changerTexteFight(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Atk.getEtiquette());
       displayMessage = true;
       startTime = millis();
       isTeammateAtk1 = false;
     } else if ( Teammate1Skill.estClique() ) {
-      turnCurrentAtk = "Teammate 1 defends";
       turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
       changerTexteFight(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Skill.getEtiquette());
       displayMessage = true;

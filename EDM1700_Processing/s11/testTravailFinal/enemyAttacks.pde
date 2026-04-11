@@ -12,22 +12,25 @@ void ennemyAttacks() {
   //turnCurrentDmg = atkEnemy;
 
   if (nbAtk == 1) {
-    testEnemyAtk = "ATTACK";
+    testEnemyAtk = "ATTAQUE";
     turnCurrentDmg = damage/2;
     turnCurrentFight(testEnemyAtk, turnCurrentDmg);
     attackTeammate(turnCurrentDmg, testEnemyAtk);
+    displayMessageEnemy = true;
     isEnnemyAtk = false;
   } else if (nbAtk == 2) {
     testEnemyAtk = selectChara.getString("Skill");
     turnCurrentDmg = damage;
     turnCurrentFight(testEnemyAtk, turnCurrentDmg);
     attackTeammate(turnCurrentDmg, testEnemyAtk);
+    displayMessageEnemy = true;
     isEnnemyAtk = false;
   } else {
     testEnemyAtk = selectChara.getString("Ult");
     turnCurrentDmg = damage+2;
     turnCurrentFight(testEnemyAtk, turnCurrentDmg);
     attackTeammate(turnCurrentDmg, testEnemyAtk);
+    displayMessageEnemy = true;
     isEnnemyAtk = false;
   }
 
