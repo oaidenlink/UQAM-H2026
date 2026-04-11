@@ -1,8 +1,5 @@
 /**
  TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
- attaques fonctionnelles
- ennemis  fonctionnels
- tour par tour shit machin
  paths et le choix des prochains niveaux
  boss fight
  getting Emmett parts
@@ -22,12 +19,21 @@
 JSONArray characters;
 JSONArray Objets;
 sonEquipe[] team = new sonEquipe[4];
+buildEmmett[] pieceEmmett = new buildEmmett[6];
 
 PImage placeholder1;
 PImage placeholder2;
 PImage placeholder3;
 PImage placeholder4;
 PImage placeholder5;
+
+PImage EmmettBlueprint;
+PImage EmmettHead;
+PImage EmmettLArm;
+PImage EmmettRArm;
+PImage EmmettTorso;
+PImage EmmettLLeg;
+PImage EmmettRLeg;
 
 PImage MainCharacter;
 PImage Teammate1;
@@ -117,6 +123,7 @@ int fightRotationNb = 1;
 String turnCurrentAtk;
 int turnCurrentDmg;
 int numRandom;
+int objRandom;
 boolean isChoosing = false;
 boolean newTeammates = true;
 boolean isLaFin = false;
@@ -148,6 +155,9 @@ void setup() {
   couleurBtn = #9BD8D0;
 
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5, "Lexie");
+  pieceEmmett[0] = new buildEmmett(162, 110, 70, 98, EmmettHead);
+  //rect(50, 50, 200, 400); // size total emmett
+ 
 
   ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?");
   refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!");
@@ -200,10 +210,17 @@ void draw() {
   }
 
   image(Enemy, width/2-250, height/2-250, 500, 500);
+  image(EmmettBlueprint, 100, 100, 200, 400);
 
   for (int i = 0; i < team.length; i++) {
     if (team[i] != null) {
       team[i].afficher();
+    }
+  }
+  
+  for (int i = 0; i < pieceEmmett.length; i++) {
+    if (pieceEmmett[i] != null) {
+      pieceEmmett[i].afficher();
     }
   }
 
@@ -213,4 +230,6 @@ void draw() {
 
   fightRotation();
   manageHP();
+  
+  
 }
