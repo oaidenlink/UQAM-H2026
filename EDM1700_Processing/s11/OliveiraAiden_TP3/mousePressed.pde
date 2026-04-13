@@ -61,22 +61,13 @@ void mousePressed() {
 
   if (isLexieAtk == true) {
     if ( LexieAtk1.estClique() ) {
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk1.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk1.getEtiquette());
       isLexieAtk = false;
     } else if ( LexieAtk2.estClique() ) {
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk2.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk2.getEtiquette());
       isLexieAtk = false;
     } else if ( LexieAtk3.estClique() ) {
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk3.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[0].getNom(), selectChara.getString("Name"), LexieAtk3.getEtiquette());
       isLexieAtk = false;
     }
   }
@@ -84,78 +75,50 @@ void mousePressed() {
 
   if (isTeammateAtk1 == true) {
     if (Teammate1Atk.estClique() ) {
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Atk.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Atk.getEtiquette());
       isTeammateAtk1 = false;
     } else if ( Teammate1Skill.estClique() ) {
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Skill.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Skill.getEtiquette());
       isTeammateAtk1 = false;
     } else if ( Teammate1Ult.estClique() ) {
-      turnCurrentAtk = "Teammate 1 power";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Ult.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[1].getNom(), selectChara.getString("Name"), Teammate1Ult.getEtiquette());
       isTeammateAtk1 = false;
     }
   }
 
   if (isTeammateAtk2 == true) {
     if (Teammate2Atk.estClique() ) {
-      turnCurrentAtk = "Teammate 2 attaque";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Atk.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Atk.getEtiquette());
       isTeammateAtk2 = false;
     } else if ( Teammate2Skill.estClique() ) {
-      turnCurrentAtk = "Teammate 2 defends";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Skill.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Skill.getEtiquette());
       isTeammateAtk2 = false;
     } else if ( Teammate2Ult.estClique() ) {
-      turnCurrentAtk = "Teammate 2 power";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Ult.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Ult.getEtiquette());
       isTeammateAtk2 = false;
     }
   }
 
   if (isTeammateAtk3 == true) {
     if ( Teammate3Atk.estClique() ) {
-      turnCurrentAtk = "Teammate 3 attaque";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[3].getNom(), selectChara.getString("Name"), Teammate3Atk.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[3].getNom(), selectChara.getString("Name"), Teammate3Atk.getEtiquette());
       isTeammateAtk3 = false;
     } else if ( Teammate3Skill.estClique() ) {
-      turnCurrentAtk = "Teammate 3 defends";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[2].getNom(), selectChara.getString("Name"), Teammate2Skill.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[3].getNom(), selectChara.getString("Name"), Teammate3Skill.getEtiquette());
       isTeammateAtk3 = false;
     } else if ( Teammate3Ult.estClique() ) {
-      turnCurrentAtk = "Teammate 3 power";
-      turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
-      changerTexteFight(true, team[3].getNom(), selectChara.getString("Name"), Teammate3Ult.getEtiquette());
-      displayMessage = true;
-      startTime = millis();
+      choisirAtk(true, team[3].getNom(), selectChara.getString("Name"), Teammate3Ult.getEtiquette());
       isTeammateAtk3 = false;
     }
   }
   
-  
+}
+
+void choisirAtk(boolean changerTxt, String name, String enemyName, String nameAtk) {
+  turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+  changerTexteFight(changerTxt, name, enemyName, nameAtk);
+  displayMessage = true;
+  startTime = millis();
 }
 
 void turnCurrentFight(String atkName, int atkDmg) {

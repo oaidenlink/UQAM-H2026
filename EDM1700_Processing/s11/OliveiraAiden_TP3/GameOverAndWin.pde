@@ -8,7 +8,7 @@ void GameOver() {
   
   if (isLaFin == true) {
     laFin.afficher();
-  }
+  } 
 }
 
 void Win() {

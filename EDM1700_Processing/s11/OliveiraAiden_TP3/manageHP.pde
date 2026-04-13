@@ -1,4 +1,6 @@
 void manageHP() {
+  JSONArray Characters = loadJSONArray("./json/characters.json");
+  JSONObject selectChara = Characters.getJSONObject(numRandom); // test
 
   afficherHpLexie = new afficherTexte(width*0.15, height-20, 100, 20, txtHpLexie);
   txtHpLexie = currentHpLexie + "/" + hpLexie;
@@ -28,6 +30,10 @@ void manageHP() {
     isChoosing = true;
     isEnemyDead = true;
     txtHpEnemy = "";
+    
+    if (selectChara.getBoolean("isGranny")) {
+      Enemy = Granny;
+    }
   }
 
   if (currentHpLexie <= 0) {

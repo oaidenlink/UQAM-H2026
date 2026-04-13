@@ -41,6 +41,8 @@ PImage Teammate2;
 PImage Teammate3;
 PImage Enemy;
 
+PImage Granny;
+
 btnAttacks ajouter; // test one
 btnAttacks refuser; // test one
 btnAttacks laFin;
@@ -63,7 +65,7 @@ btnAttacks LexieAtk1;
 btnAttacks LexieAtk2;
 btnAttacks LexieAtk3;
 boolean isLexieAtk = false;
-int hpLexie = 25;
+int hpLexie = 35;
 int currentHpLexie;
 int atkLexie =  4;
 String txtHpLexie;
@@ -141,6 +143,8 @@ final int DISPLAY_DURATION = 1000; // in milliseconds = 1s
 int bonusDmg = 2;
 int bonusHealth = 3;
 
+boolean isTextBoxAffiche = false;
+
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -199,13 +203,13 @@ void draw() {
       displayMessageEnemy = false;
     }
   }
-  
-
 
   if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {
+    isTextBoxAffiche = false;
     ajouter.afficher();
     refuser.afficher();
   } else if (selectChara.getBoolean("isClaimable") == false && selectChara.getBoolean("isRat") == false || isChoosing == true && newTeammates == false) {
+    isTextBoxAffiche = false;
     refuser.afficher();
   }
 

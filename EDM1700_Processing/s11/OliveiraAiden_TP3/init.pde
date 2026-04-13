@@ -29,8 +29,7 @@ void init() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom); // test
   Enemy = loadImage(selectChara.getString("Img")); // test
-
-
+  Granny = loadImage(selectChara.getString("ImgKaboom")); // test
 
   placeholder1 = loadImage("PLACEHOLDER.png");
   placeholder2 = loadImage("remascend.png");
@@ -73,8 +72,8 @@ void init() {
   MainCharacter = placeholder5;
 
   LexieAtk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "ATTAQUE");
-  LexieAtk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "TIRER");
-  LexieAtk3 = new btnAttacks(width*0.17, height*0.66, 170, 50, "KABOOM");
+  LexieAtk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "KABOOM");
+  LexieAtk3 = new btnAttacks(width*0.17, height*0.66, 170, 50, "KABLAOW");
 
 
   // INIT TEAMMATE 1 -----------------------------------------------------------

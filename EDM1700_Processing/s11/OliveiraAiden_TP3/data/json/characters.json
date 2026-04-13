@@ -3,72 +3,99 @@
 		"Name" : "Dynamo",
 		"Death" : "Dynamo est vaincu!",
 		"Img" : "DynamoWee.png",
+		"ImgKaboom" : "granny_kaboom.jpg",
 		"MaxHp" : 16,
 		"Hp" : 16,
 		"Atk" : 3,
 		"Skill" : "KINETIC PULSE",
 		"Ult" : "SINGULARITÉ",
 		"isClaimable" : true,
-		"isRat" : false
+		"isRat" : false,
+		"isGranny" : false
 	},
 	{
 		"Name" : "Registeel",
 		"Death" : "Registeel est vaincu!",
 		"Img" : "registeel.png",
+		"ImgKaboom" : "granny_kaboom.jpg",
 		"MaxHp" : 30,
 		"Hp" : 30,
 		"Atk" : 4,
 		"Skill" : "EE OO EE OO",
 		"Ult" : "IIIIOOOOO",
 		"isClaimable" : true,
-		"isRat" : false
+		"isRat" : false,
+		"isGranny" : false
 	},
 	{
 		"Name" : "Seven",
 		"Death" : "Seven est vaincu!",
 		"Img" : "Seven.png",
+		"ImgKaboom" : "granny_kaboom.jpg",
 		"MaxHp" : 20,
 		"Hp" : 20,
 		"Atk" : 4,
 		"Skill" : "CHARGE STATIQUE",
 		"Ult" : "STORM CLOUD",
 		"isClaimable" : true,
-		"isRat" : false
+		"isRat" : false,
+		"isGranny" : false
 	},
 	{
 		"Name" : "Spamton",
 		"Death" : "Spamton is crashing out!",
 		"Img" : "Spamton.png",
+		"ImgKaboom" : "granny_kaboom.jpg",
 		"MaxHp" : 10,
 		"Hp" : 10,
 		"Atk" : 3,
 		"Skill" : "[[BIG SHOT!!!]]",
 		"Ult" : "[[Hyperlien Bloqué]]",
 		"isClaimable" : true,
-		"isRat" : false
+		"isRat" : false,
+		"isGranny" : false
 	},
 	{
 		"Name" : "Tenna",
 		"Death" : "Tenna est vaincu!",
 		"Img" : "Tenna.png",
+		"ImgKaboom" : "granny_kaboom.jpg",
 		"MaxHp" : 23,
 		"Hp" : 23,
 		"Atk" : 4,
 		"Skill" : "MIKE!!",
 		"Ult" : "IT'S! TV! TIME!",
 		"isClaimable" : true,
-		"isRat" : false
+		"isRat" : false,
+		"isGranny" : false
 	},
 	{
 		"Name" : "The Rat",
 		"Death" : "The Rat is exploding! (The next enemy will receive damage upon entering)",
 		"Img" : "rat.png",
+		"ImgKaboom" : "granny_kaboom.jpg",
 		"MaxHp" : 7,
 		"Hp" : 7,
 		"Atk" : 2,
 		"Skill" : "AAAH",
 		"Ult" : "EEK",
 		"isClaimable" : false,
-		"isRat" : true
+		"isRat" : true,
+		"isGranny" : false
+	},
+	{
+		"Name" : "Granny",
+		"Death" : "Rest in peace my granny she got hit by a bazooka",
+		"Img" : "Granny.jpg",
+		"ImgKaboom" : "granny_kaboom.jpg",
+		"MaxHp" : 12,
+		"Hp" : 12,
+		"Atk" : 2,
+		"Skill" : "Bisou de tante May",
+		"Ult" : "Bazooka",
+		"isClaimable" : false,
+		"isRat" : false,
+		"isGranny" : true
 	}
+	
 ]
