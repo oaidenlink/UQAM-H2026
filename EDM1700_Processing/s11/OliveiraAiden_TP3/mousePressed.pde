@@ -62,7 +62,7 @@ void mousePressed() {
       emmettNbPieces++;
     }
     
-    selectChara.setBoolean("isClaimable", false);
+    //selectChara.setBoolean("isClaimable", false);
     fightRotationNb = 1;
     isEnemyDead = false;
     isChoosing = false;
@@ -70,14 +70,21 @@ void mousePressed() {
     newEnemy();
     
   } else if (selectChara.getBoolean("isRat") == true || selectChara.getBoolean("isGranny") == true) {
-    fightRotationNb = 1;
-    isEnemyDead = false;
-    isChoosing = false;
-    reload();
-    newEnemy();
+    
+    if (currentHpEnemy <= 0) {
+      fightRotationNb = 0;
+      isEnemyDead = false;
+      isChoosing = false;
+      reload();
+      newEnemy();
+    }
   }
   
   if (laFin.estClique() || leWin.estClique()) {
+    isWin = false;
+    isLaFin = false;
+    opacity = 0;
+    reload();
     init();
   }
 
