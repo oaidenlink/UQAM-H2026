@@ -5,35 +5,35 @@ void ennemyAttacks() {
   JSONObject selectChara = Characters.getJSONObject(numRandom);
 
   int damage;
+  String testEnemyAtk;
   damage = selectChara.getInt("Atk");
-
+  
   if (nbAtk == 1) {
-    enemyAtkLoop("ATTAQUE", damage/2);
+    testEnemyAtk = "ATTAQUE";
+    turnCurrentDmg = damage/2;
+    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
+    attackTeammate(turnCurrentDmg, testEnemyAtk);
+    displayMessageEnemy = true;
+    isEnnemyAtk = false;
   } else if (nbAtk == 2) {
-    enemyAtkLoop(selectChara.getString("Skill"), damage);
+    testEnemyAtk = selectChara.getString("Skill");
+    turnCurrentDmg = damage;
+    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
+    attackTeammate(turnCurrentDmg, testEnemyAtk);
+    displayMessageEnemy = true;
+    isEnnemyAtk = false;
   } else {
-    enemyAtkLoop(selectChara.getString("Ult"), damage+2);
+    testEnemyAtk = selectChara.getString("Ult");
+    turnCurrentDmg = damage+2;
+    turnCurrentFight(testEnemyAtk, turnCurrentDmg);
+    attackTeammate(turnCurrentDmg, testEnemyAtk);
+    displayMessageEnemy = true;
+    isEnnemyAtk = false;
   }
 
   if (isEnnemyAtk == false) {
     fightRotationNb = 1;
   }
-  
-  if (isEnemyDead == true && selectChara.getBoolean("isGranny") == true) {
-    Enemy = Granny;
-  }
-}
-
-void enemyAtkLoop(String atkName, int dmg) {
-  String testEnemyAtk;
-  
-  testEnemyAtk = atkName;
-  turnCurrentDmg = dmg;
-  
-  turnCurrentFight(testEnemyAtk, turnCurrentDmg);
-  attackTeammate(turnCurrentDmg, testEnemyAtk);
-  displayMessageEnemy = true;
-  isEnnemyAtk = false;
 }
 
 void attackTeammate(int dmg, String name) {
@@ -59,7 +59,7 @@ void attackTeammate(int dmg, String name) {
 
 void newEnemy() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
-  numRandom = int(random( 0, Characters.size() ));
+  numRandom = int( random( 0, Characters.size() ));
   JSONObject selectChara = Characters.getJSONObject(numRandom);
 
   Enemy = loadImage(selectChara.getString("Img"));

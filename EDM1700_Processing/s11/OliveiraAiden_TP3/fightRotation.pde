@@ -36,7 +36,6 @@ void fightRotation() {
       fightRotationNb++;
     }
   } else if (fightRotationNb > teamMember) { //modify this plz
-    //println("C'est le tour du méchant");
     isEnnemyAtk = true;
     ennemyAttacks();
   }

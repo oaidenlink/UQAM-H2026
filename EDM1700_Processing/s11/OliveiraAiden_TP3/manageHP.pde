@@ -27,13 +27,14 @@ void manageHP() {
   }
 
   if (currentHpEnemy <= 0) {
+    
+    if (selectChara.getBoolean("isGranny") == true) {
+      Enemy = Granny;
+    }
+    
     isChoosing = true;
     isEnemyDead = true;
     txtHpEnemy = "";
-    
-    if (selectChara.getBoolean("isGranny")) {
-      Enemy = Granny;
-    }
   }
 
   if (currentHpLexie <= 0) {
@@ -56,4 +57,5 @@ void manageHP() {
     txtHpTeam3 = "";
     txtHpEnemy = "";
   }
+  
 }

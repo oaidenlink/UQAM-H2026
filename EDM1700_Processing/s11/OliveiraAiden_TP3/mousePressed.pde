@@ -35,7 +35,7 @@ void mousePressed() {
       
     }
     
-    selectChara.setBoolean("isClaimable", false);
+    //selectChara.setBoolean("isClaimable", false);
     reload();
     fightRotationNb = 1;
     newEnemy();
@@ -43,12 +43,37 @@ void mousePressed() {
     isChoosing = false;
     teamMember++;
     
-  } else if ( refuser.estClique() || selectChara.getBoolean("isRat") == true) {
-    //selectChara.setBoolean("isClaimable", false);
-    reload();
+  } else if ( refuser.estClique() ) {
+    // AJOUTER UNE PARTIE DE EMMETT (a retravailler)
+    if (emmettNbPieces == 1) {
+      pieceEmmett[emmettNbPieces] = new buildEmmett(210, 190, 120, 60, EmmettLArm);
+      emmettNbPieces++;
+    } else if (emmettNbPieces == 2) {
+      pieceEmmett[emmettNbPieces] = new buildEmmett(70, 190, 120, 60, EmmettRArm);
+      emmettNbPieces++;
+    } else if (emmettNbPieces == 3) {
+      pieceEmmett[emmettNbPieces] = new buildEmmett(162, 175, 70, 140, EmmettTorso);
+      emmettNbPieces++;
+    } else if (emmettNbPieces == 4) {
+      pieceEmmett[emmettNbPieces] = new buildEmmett(170, 270, 90, 180, EmmettLLeg);
+      emmettNbPieces++;
+    } else if (emmettNbPieces == 5) {
+      pieceEmmett[emmettNbPieces] = new buildEmmett(132, 270, 90, 180, EmmettRLeg);
+      emmettNbPieces++;
+    }
+    
+    selectChara.setBoolean("isClaimable", false);
     fightRotationNb = 1;
     isEnemyDead = false;
     isChoosing = false;
+    reload();
+    newEnemy();
+    
+  } else if (selectChara.getBoolean("isRat") == true || selectChara.getBoolean("isGranny") == true) {
+    fightRotationNb = 1;
+    isEnemyDead = false;
+    isChoosing = false;
+    reload();
     newEnemy();
   }
   
@@ -122,7 +147,7 @@ void choisirAtk(boolean changerTxt, String name, String enemyName, String nameAt
 }
 
 void turnCurrentFight(String atkName, int atkDmg) {
-  //println("atkName: " + atkName + " + atkDmg: " + atkDmg);
+  println("atkName: " + atkName + " + atkDmg: " + atkDmg);
   if (isEnnemyAtk == false && isEnemyDead == false) {
     currentHpEnemy -= atkDmg;
   }

@@ -145,6 +145,8 @@ int bonusHealth = 3;
 
 boolean isTextBoxAffiche = false;
 
+int emmettNbPieces = 1;
+
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -235,5 +237,10 @@ void draw() {
   fightRotation();
   manageHP();
   
+  if (emmettNbPieces >= 6) {
+    isWin = true;
+    opacity = 255;
+    Win();
+  }
   
 }
