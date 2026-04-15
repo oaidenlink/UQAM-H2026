@@ -1,15 +1,10 @@
 /**
- TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
- paths et le choix des prochains niveaux
- boss fight
- getting Emmett parts
- building Emmett mini game
- menu / save screen / home screen / fail screen / reset / fin de jeu
- changer le curseur
- objects you can buy / win / sell
+   TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
+ fix scenes fin
+ main menu
  art
- animations???
- SAVE FILE TABARNAK
+ objets (rats)
+ démonter la granny????
  */
 
 
@@ -137,7 +132,7 @@ float opacity = 0;
 boolean displayMessage = false;
 boolean displayMessageEnemy = false;
 int startTime;
-final int DISPLAY_DURATION = 1000; // in milliseconds = 1s
+final int DISPLAY_DURATION = 3000; // in milliseconds = 3s
 
 //boolean canUlt = true;
 int bonusDmg = 2;

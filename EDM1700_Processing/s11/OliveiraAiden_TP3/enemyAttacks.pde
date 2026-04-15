@@ -58,8 +58,9 @@ void attackTeammate(int dmg, String name) {
 }
 
 void newEnemy() {
+  println("hello");
   JSONArray Characters = loadJSONArray("./json/characters.json");
-  numRandom = int( random( 0, Characters.size() ));
+  numRandom = floor( random( Characters.size() ));
   JSONObject selectChara = Characters.getJSONObject(numRandom);
 
   Enemy = loadImage(selectChara.getString("Img"));
