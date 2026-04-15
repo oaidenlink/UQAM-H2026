@@ -1,0 +1,22 @@
+[
+	{
+		"Name" : "Bing Bong",
+		"Img" : "obj_bingBong",
+		"Bonus" : 5
+	},
+	{
+		"Name" : "Shovel",
+		"Img" : "obj_shovel",
+		"Bonus" : 3
+	},
+	{
+		"Name" : "Trophy Collector",
+		"Img" : "obj_trophyCollector",
+		"Bonus" : 1
+	},
+	{
+		"Name" : "Thunder Stone",
+		"Img" : "obj_thunderStone",
+		"Bonus" : 2
+	}
+]
