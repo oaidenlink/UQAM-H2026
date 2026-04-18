@@ -46,19 +46,19 @@ void mousePressed() {
   } else if ( refuser.estClique() ) {
     // AJOUTER UNE PARTIE DE EMMETT (a retravailler)
     if (emmettNbPieces == 1) {
-      pieceEmmett[emmettNbPieces] = new buildEmmett(210, 190, 120, 60, EmmettLArm);
+      pieceEmmett[emmettNbPieces] = new buildEmmett(100, 100, 200, 400, EmmettLArm);
       emmettNbPieces++;
     } else if (emmettNbPieces == 2) {
-      pieceEmmett[emmettNbPieces] = new buildEmmett(70, 190, 120, 60, EmmettRArm);
+      pieceEmmett[emmettNbPieces] = new buildEmmett(100, 100, 200, 400, EmmettRArm);
       emmettNbPieces++;
     } else if (emmettNbPieces == 3) {
-      pieceEmmett[emmettNbPieces] = new buildEmmett(162, 175, 70, 140, EmmettTorso);
+      pieceEmmett[emmettNbPieces] = new buildEmmett(100, 100, 200, 400, EmmettTorso);
       emmettNbPieces++;
     } else if (emmettNbPieces == 4) {
-      pieceEmmett[emmettNbPieces] = new buildEmmett(170, 270, 90, 180, EmmettLLeg);
+      pieceEmmett[emmettNbPieces] = new buildEmmett(100, 100, 200, 400, EmmettLLeg);
       emmettNbPieces++;
     } else if (emmettNbPieces == 5) {
-      pieceEmmett[emmettNbPieces] = new buildEmmett(132, 270, 90, 180, EmmettRLeg);
+      pieceEmmett[emmettNbPieces] = new buildEmmett(100, 100, 200, 400, EmmettRLeg);
       emmettNbPieces++;
     }
     

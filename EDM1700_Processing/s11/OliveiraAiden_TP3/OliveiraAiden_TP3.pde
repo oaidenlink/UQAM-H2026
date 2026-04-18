@@ -4,7 +4,7 @@
  main menu
  art
  objets (rats)
- démonter la granny????
+ quel atk fait cmb de dmg
  */
 
 
@@ -16,10 +16,8 @@ JSONArray Objets;
 sonEquipe[] team = new sonEquipe[4];
 buildEmmett[] pieceEmmett = new buildEmmett[6];
 
-PImage placeholder1;
-PImage placeholder2;
-PImage placeholder3;
-PImage placeholder4;
+PImage background;
+
 PImage placeholder5;
 
 PImage EmmettBlueprint;
@@ -150,13 +148,14 @@ int emmettNbPieces = 1;
 void setup() {  
   size(1400, 800);
   
+  
   newEnemy();
   init();
 
   couleurBtn = #9BD8D0;
 
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5, "Lexie");
-  pieceEmmett[0] = new buildEmmett(162, 110, 70, 98, EmmettHead);
+  pieceEmmett[0] = new buildEmmett(100, 100, 200, 400, EmmettHead);
   //rect(50, 50, 200, 400); // size total emmett
  
 
@@ -176,7 +175,8 @@ void draw() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom);
 
-  background(couleurBtn);
+  //background(couleurBtn);
+  image(background, 0, 0);
 
   //box
   color(0);

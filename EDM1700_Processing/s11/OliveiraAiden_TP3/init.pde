@@ -24,6 +24,8 @@ void init() {
   team[1] = null;
   team[2] = null;
   team[3] = null;
+  
+  background = loadImage("background.png");
 
   // TEST PLACEHOLDER INFO (dans un tableau?)
   JSONArray Characters = loadJSONArray("./json/characters.json");
@@ -31,10 +33,6 @@ void init() {
   Enemy = loadImage(selectChara.getString("Img")); // test
   Granny = loadImage(selectChara.getString("ImgKaboom")); // test
 
-  placeholder1 = loadImage("PLACEHOLDER.png");
-  placeholder2 = loadImage("remascend.png");
-  placeholder3 = loadImage("rembonks.png");
-  placeholder4 = loadImage("remsilly.png");
   placeholder5 = loadImage("remviolence.png");
 
   EmmettBlueprint = loadImage("EmmettFullBody.png");
