@@ -166,6 +166,20 @@
 		"isClaimable" : true,
 		"isRat" : false,
 		"isGranny" : true
+	},
+	{
+		"Name" : "Alex & Tenna?!",
+		"Death" : "SpamTenna real.",
+		"Img" : "Alex.jpg",
+		"ImgKaboom" : "granny_kaboom.jpg",
+		"MaxHp" : 22,
+		"Hp" : 22,
+		"Atk" : 3,
+		"Skill" : "Bisou de tante May",
+		"Ult" : "Bazooka",
+		"isClaimable" : true,
+		"isRat" : false,
+		"isGranny" : true
 	}
 	
 ]

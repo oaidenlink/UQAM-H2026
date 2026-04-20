@@ -20,6 +20,8 @@ PImage background;
 
 PImage placeholder5;
 
+PImage Lexie;
+
 PImage EmmettBlueprint;
 PImage EmmettHead;
 PImage EmmettLArm;
@@ -154,7 +156,7 @@ void setup() {
 
   couleurBtn = #9BD8D0;
 
-  team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, placeholder5, "Lexie");
+  team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, MainCharacter, "Lexie");
   pieceEmmett[0] = new buildEmmett(100, 100, 200, 400, EmmettHead);
   //rect(50, 50, 200, 400); // size total emmett
  

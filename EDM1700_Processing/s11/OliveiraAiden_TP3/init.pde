@@ -32,6 +32,8 @@ void init() {
   JSONObject selectChara = Characters.getJSONObject(numRandom); // test
   Enemy = loadImage(selectChara.getString("Img")); // test
   Granny = loadImage(selectChara.getString("ImgKaboom")); // test
+  
+  Lexie = loadImage("lexie.png");
 
   placeholder5 = loadImage("remviolence.png");
 
@@ -67,7 +69,7 @@ void init() {
   // INIT LEXIE -----------------------------------------------------------
   currentHpLexie = hpLexie;
   txtHpLexie = currentHpLexie + "/" + hpLexie;
-  MainCharacter = placeholder5;
+  MainCharacter = Lexie;
 
   LexieAtk1 = new btnAttacks(width*0.17, height*0.51, 170, 50, "ATTAQUE");
   LexieAtk2 = new btnAttacks(width*0.17, height*0.585, 170, 50, "KABOOM");
