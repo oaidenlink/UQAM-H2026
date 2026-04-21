@@ -2,9 +2,7 @@
    TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
  fix scenes fin
  main menu
- art
  objets (rats)
- quel atk fait cmb de dmg
  */
 
 
@@ -15,6 +13,7 @@ JSONArray characters;
 JSONArray Objets;
 sonEquipe[] team = new sonEquipe[4];
 buildEmmett[] pieceEmmett = new buildEmmett[6];
+tableauObj[] tblObjets = new tableauObj[5];
 
 PImage background;
 
@@ -35,8 +34,12 @@ PImage Teammate1;
 PImage Teammate2;
 PImage Teammate3;
 PImage Enemy;
-
 PImage Granny;
+
+PImage objBingBong;
+PImage objShovel;
+PImage objStone;
+PImage objTrophy;
 
 btnAttacks ajouter; // test one
 btnAttacks refuser; // test one
@@ -135,12 +138,16 @@ int startTime;
 final int DISPLAY_DURATION = 3000; // in milliseconds = 3s
 
 //boolean canUlt = true;
-int bonusDmg = 2;
-int bonusHealth = 3;
+int bonusDmg = 0;
+int bonusHealth = 0;
+PImage ChosenObject;
+boolean isObjClaimed = false;
 
 boolean isTextBoxAffiche = false;
 
 int emmettNbPieces = 1;
+int nbObjets = 0;
+
 
 
 
@@ -161,11 +168,11 @@ void setup() {
   //rect(50, 50, 200, 400); // size total emmett
  
 
-  ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?");
-  refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!");
+  ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?", "");
+  refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!", "");
   
-  laFin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?");
-  leWin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?");
+  laFin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?", "");
+  leWin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?", "");
 }
 
 
@@ -174,6 +181,8 @@ void setup() {
 
 // draw
 void draw() {
+  MainMenu();
+  
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom);
 
@@ -203,14 +212,6 @@ void draw() {
     }
   }
 
-  if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {
-    isTextBoxAffiche = false;
-    ajouter.afficher();
-    refuser.afficher();
-  } else if (selectChara.getBoolean("isClaimable") == false && selectChara.getBoolean("isRat") == false || isChoosing == true && newTeammates == false) {
-    isTextBoxAffiche = false;
-    refuser.afficher();
-  }
 
   image(Enemy, width/2-250, height/2-250, 500, 500);
   image(EmmettBlueprint, 100, 100, 200, 400);
@@ -226,6 +227,12 @@ void draw() {
       pieceEmmett[i].afficher();
     }
   }
+  
+  for (int i = 0; i < tblObjets.length; i++) {
+    if (tblObjets[i] != null) {
+      tblObjets[i].afficher();
+    }
+  }
 
   if (teamMember == 4) {
     newTeammates = false;
@@ -238,6 +245,15 @@ void draw() {
     isWin = true;
     opacity = 255;
     Win();
+  }
+  
+  if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {
+    isTextBoxAffiche = false;
+    ajouter.afficher();
+    refuser.afficher();
+  } else if (selectChara.getBoolean("isClaimable") == false && selectChara.getBoolean("isRat") == false || isChoosing == true && newTeammates == false) {
+    isTextBoxAffiche = false;
+    refuser.afficher();
   }
   
 }

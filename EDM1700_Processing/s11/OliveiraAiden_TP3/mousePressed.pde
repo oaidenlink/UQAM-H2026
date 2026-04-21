@@ -80,7 +80,8 @@ void mousePressed() {
     }
   }
   
-  if (laFin.estClique() || leWin.estClique()) {
+  if (laFin.estClique()) {
+    println("JE SUIS LA FIN!! J'AI ÉTÉ CLIQUÉ");
     isWin = false;
     isLaFin = false;
     opacity = 0;
@@ -147,7 +148,7 @@ void mousePressed() {
 }
 
 void choisirAtk(boolean changerTxt, String name, String enemyName, String nameAtk) {
-  turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
+  turnCurrentFight(turnCurrentAtk+bonusDmg, turnCurrentDmg);
   changerTexteFight(changerTxt, name, enemyName, nameAtk);
   displayMessage = true;
   startTime = millis();

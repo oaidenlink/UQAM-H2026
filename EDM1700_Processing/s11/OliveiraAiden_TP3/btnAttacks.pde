@@ -6,14 +6,16 @@ class btnAttacks {
   float w; //largeur du bouton
   float h; //hauteur du bouton
   String etiquette; //texte qui s'affichera sur le bouton
+  String atkDmg;
 
   // 2. CONSTRUCTEUR
-  btnAttacks(float bx, float by, float bw, float bh, String bEtiquette) {
+  btnAttacks(float bx, float by, float bw, float bh, String bEtiquette, String bAtkDmg) {
     x = bx-bw/2;
     y = by-bh/2;
     w = bw;
     h = bh;
     etiquette = bEtiquette;
+    atkDmg = bAtkDmg;
   }
 
   // 3. MÉTHODE — afficher le bouton
@@ -25,6 +27,10 @@ class btnAttacks {
     textAlign(CENTER);
     textSize(16);
     text(etiquette, x+w/2, y+h/2);
+    
+    fill(0);
+    textSize(27);
+    text(atkDmg, x-140, y+15, w, h);
     // ?? ta mere
   }
   

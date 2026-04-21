@@ -16,6 +16,8 @@ void Win() {
     rect(0, 0, width, height);
     fill(255);
     text("Bravo! Vous avez reconstruit Emmett!!", width/2, height/2);
-    leWin.afficher();
+    PImage GoodEnding = loadImage("EmmetGoodEnding.png");
+    image(GoodEnding, 200, 400);
+    //leWin.afficher();
   }
 }

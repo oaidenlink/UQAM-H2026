@@ -28,11 +28,20 @@ void manageHP() {
 
   if (currentHpEnemy <= 0) {
     
+    texteDeFightEnemy = selectChara.getString("Death");
+    
+    if (selectChara.getBoolean("isRat") == true) {
+      isChoosing = false;
+      isObjClaimed = true;
+      appelleObjets();
+    } else {
+      isChoosing = true;
+    }
+    
     if (selectChara.getBoolean("isGranny") == true) {
       Enemy = Granny;
     }
     
-    isChoosing = true;
     isEnemyDead = true;
     txtHpEnemy = "";
   }
