@@ -1,5 +1,5 @@
 /**
-   TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
+ TO DO LIST OF SHITS TO ADD TO THIS PROJECT!!!!
  fix scenes fin
  main menu
  objets (rats)
@@ -148,16 +148,17 @@ boolean isTextBoxAffiche = false;
 int emmettNbPieces = 1;
 int nbObjets = 0;
 
-
+boolean isMenuAffiche = true;
+btnAttacks btnMenu;
 
 
 /////////////////////////////////////////////////////////////////////////////////
 
 // setup
-void setup() {  
+void setup() {
   size(1400, 800);
-  
-  
+
+
   newEnemy();
   init();
 
@@ -166,13 +167,15 @@ void setup() {
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, MainCharacter, "Lexie");
   pieceEmmett[0] = new buildEmmett(100, 100, 200, 400, EmmettHead);
   //rect(50, 50, 200, 400); // size total emmett
- 
+
 
   ajouter = new btnAttacks(width*0.3, height/2-200, 150, 50, "Ajouter à l'équipe?", "");
   refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!", "");
-  
+
   laFin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?", "");
   leWin = new btnAttacks(width/2, height/2+100, 150, 50, "Recommencer?", "");
+  
+  btnMenu = new btnAttacks(width/2, height*0.9, 150, 50, "JOUER!", "");
 }
 
 
@@ -181,79 +184,82 @@ void setup() {
 
 // draw
 void draw() {
-  MainMenu();
-  
-  JSONArray Characters = loadJSONArray("./json/characters.json");
-  JSONObject selectChara = Characters.getJSONObject(numRandom);
 
-  //background(couleurBtn);
-  image(background, 0, 0);
+  if (isMenuAffiche == true) {
+    MainMenu();
+  } else if (isMenuAffiche == false) {
 
-  //box
-  color(0);
-  rect(width*0.7, 50, 400, height/2);
+    JSONArray Characters = loadJSONArray("./json/characters.json");
+    JSONObject selectChara = Characters.getJSONObject(numRandom);
 
-  // SOURCE: https://forum.processing.org/two/discussion/8084/how-do-i-display-a-message-for-a-few-seconds.html
-  if (displayMessage == true) {
-    fill(255);
-    afficherFightText = new afficherFightTxt(width*0.71, 100, 370, 200, texteDeFight);
-    afficherFightText.afficheText();
-    if (millis() - startTime > DISPLAY_DURATION) {
-      // Stop displaying the message, thus resume the ball moving
-      displayMessage = false;
+    //background(couleurBtn);
+    image(background, 0, 0);
+
+    //box
+    color(0);
+    rect(width*0.7, 50, 400, height/2);
+
+    // SOURCE: https://forum.processing.org/two/discussion/8084/how-do-i-display-a-message-for-a-few-seconds.html
+    if (displayMessage == true) {
+      fill(255);
+      afficherFightText = new afficherFightTxt(width*0.71, 100, 370, 200, texteDeFight);
+      afficherFightText.afficheText();
+      if (millis() - startTime > DISPLAY_DURATION) {
+        // Stop displaying the message, thus resume the ball moving
+        displayMessage = false;
+      }
+    }
+    if (displayMessageEnemy == true) {
+      fill(#5F5F5F);
+      afficherFightTextEnemy = new afficherFightTxt(width*0.71, 270, 370, 200, texteDeFightEnemy); // CHECK LA TAILLE YA QQCHOSE DE OFF
+      afficherFightTextEnemy.afficheText();
+      if (millis() - startTime > DISPLAY_DURATION) {
+        displayMessageEnemy = false;
+      }
+    }
+
+
+    image(Enemy, width/2-250, height/2-250, 500, 500);
+    image(EmmettBlueprint, 100, 100, 200, 400);
+
+    for (int i = 0; i < team.length; i++) {
+      if (team[i] != null) {
+        team[i].afficher();
+      }
+    }
+
+    for (int i = 0; i < pieceEmmett.length; i++) {
+      if (pieceEmmett[i] != null) {
+        pieceEmmett[i].afficher();
+      }
+    }
+
+    for (int i = 0; i < tblObjets.length; i++) {
+      if (tblObjets[i] != null) {
+        tblObjets[i].afficher();
+      }
+    }
+
+    if (teamMember == 4) {
+      newTeammates = false;
+    }
+
+    fightRotation();
+    manageHP();
+
+    if (emmettNbPieces >= 6) {
+      isWin = true;
+      opacity = 255;
+      Win();
+    }
+
+    if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {
+      isTextBoxAffiche = false;
+      ajouter.afficher();
+      refuser.afficher();
+    } else if (selectChara.getBoolean("isClaimable") == false && selectChara.getBoolean("isRat") == false || isChoosing == true && newTeammates == false) {
+      isTextBoxAffiche = false;
+      refuser.afficher();
     }
   }
-  if (displayMessageEnemy == true) {
-    fill(#5F5F5F);
-    afficherFightTextEnemy = new afficherFightTxt(width*0.71, 270, 370, 200, texteDeFightEnemy); // CHECK LA TAILLE YA QQCHOSE DE OFF
-    afficherFightTextEnemy.afficheText();
-    if (millis() - startTime > DISPLAY_DURATION) {
-      displayMessageEnemy = false;
-    }
-  }
-
-
-  image(Enemy, width/2-250, height/2-250, 500, 500);
-  image(EmmettBlueprint, 100, 100, 200, 400);
-
-  for (int i = 0; i < team.length; i++) {
-    if (team[i] != null) {
-      team[i].afficher();
-    }
-  }
-  
-  for (int i = 0; i < pieceEmmett.length; i++) {
-    if (pieceEmmett[i] != null) {
-      pieceEmmett[i].afficher();
-    }
-  }
-  
-  for (int i = 0; i < tblObjets.length; i++) {
-    if (tblObjets[i] != null) {
-      tblObjets[i].afficher();
-    }
-  }
-
-  if (teamMember == 4) {
-    newTeammates = false;
-  }
-
-  fightRotation();
-  manageHP();
-  
-  if (emmettNbPieces >= 6) {
-    isWin = true;
-    opacity = 255;
-    Win();
-  }
-  
-  if (selectChara.getBoolean("isClaimable") == true && isChoosing == true && newTeammates == true) {
-    isTextBoxAffiche = false;
-    ajouter.afficher();
-    refuser.afficher();
-  } else if (selectChara.getBoolean("isClaimable") == false && selectChara.getBoolean("isRat") == false || isChoosing == true && newTeammates == false) {
-    isTextBoxAffiche = false;
-    refuser.afficher();
-  }
-  
 }

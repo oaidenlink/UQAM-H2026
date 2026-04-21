@@ -1,23 +1,25 @@
 void appelleObjets() {
   objRandom = floor( random(4));
 
-  if (objRandom == 1) {
-    ChosenObject = objTrophy;
-    bonusDmg += 1;
-    bonusHealth += 2;
-  } else if (objRandom == 2) {
-    ChosenObject = objShovel;
-    bonusDmg += 3;
-  } else if (objRandom == 3) {
-    ChosenObject = objStone;
-    bonusHealth += 3;
-  } else {
-    ChosenObject = objBingBong;
-    bonusDmg += 5;
-    bonusHealth += 5;
-  }
-
   if (isObjClaimed == true && nbObjets <= 4) {
+    
+    if (objRandom == 1) {
+      ChosenObject = objTrophy;
+      bonusDmg += 1;
+      bonusHealth += 2;
+    } else if (objRandom == 2) {
+      ChosenObject = objShovel;
+      bonusDmg += 3;
+    } else if (objRandom == 3) {
+      ChosenObject = objStone;
+      bonusHealth += 3;
+    } else {
+      ChosenObject = objBingBong;
+      bonusDmg += 5;
+      bonusHealth += 5;
+    }
+
+
     if (nbObjets == 0) {
       tblObjets[nbObjets] = new tableauObj(100, 10, 40, ChosenObject);
       nbObjets++;

@@ -2,6 +2,10 @@ void mousePressed() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom); 
   
+  if ( btnMenu.estClique() ) {
+    isMenuAffiche = false;
+  }
+  
   //si le bouton est cliqué
   if (ajouter.estClique() && newTeammates == true && isChoosing == true && selectChara.getBoolean("isRat") == false) {
     
@@ -80,7 +84,7 @@ void mousePressed() {
     }
   }
   
-  if (laFin.estClique()) {
+  if (laFin.estClique() && isLaFin == true) {
     println("JE SUIS LA FIN!! J'AI ÉTÉ CLIQUÉ");
     isWin = false;
     isLaFin = false;

@@ -45,7 +45,7 @@ void init() {
   EmmettLLeg = loadImage("EmmettLLeg.png");
   EmmettRLeg = loadImage("EmmettRLeg.png");
   
-  objBingBong = loadImage("obj_bingbong.png");
+  objBingBong = loadImage("obj_bingBong.png");
   objShovel = loadImage("obj_shovel.png");
   objStone = loadImage("obj_thunderStone.png");
   objTrophy = loadImage("obj_trophyCollector.png");
