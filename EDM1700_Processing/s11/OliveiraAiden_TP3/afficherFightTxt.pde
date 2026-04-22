@@ -1,13 +1,16 @@
+/// - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// AFFICHE LE TEXTE LORS DES COMBATS (À DROITE)
+/// - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 class afficherFightTxt {
 
-  // 1. CHAMPS - les variables dont le bouton a besoin
-  float x; //position en x
-  float y; //position en y
-  float w; //largeur?
-  float h; //hauteur?
-  String etiquette; //texte qui s'affichera 
+  // VARIABLES 
+  float x;                 //position en x
+  float y;                 //position en y
+  float w;                 //largeur
+  float h;                 //hauteur
+  String etiquette;        //texte qui s'affiche
 
-  // 2. CONSTRUCTEUR
+  // CONSTRUCTEUR
   afficherFightTxt(float ax, float ay, float aw, float ah, String aEtiquette) {
     x = ax;
     y = ay;
@@ -16,23 +19,22 @@ class afficherFightTxt {
     etiquette = aEtiquette;
   }
 
-  // 3. MÉTHODE — afficher le bouton
+  // FONCTIONS
   void afficheText() {
-    textAlign(CENTER);
-    
-    fill(255); //couleur du texte
-    textSize(32);
-    text(etiquette, x-3, y, w, h);
+    textAlign(CENTER);                // aligner le texte au centre 
+    fill(255);                        // couleur du texte
+    textSize(32);                     // modifie la taille du texte 
+    text(etiquette, x-3, y, w, h);    // ajoute de la bordure blanche au texte
     text(etiquette, x+3, y, w, h);
     text(etiquette, x, y-3, w, h);
     text(etiquette, x, y+3, w, h);
     
-    fill(#363636); //couleur du texte
-    text(etiquette, x, y, w, h);
-    // ?? ta mere
+    fill(#363636);                    // couleur de l'étiquette
+    text(etiquette, x, y, w, h);      // affiche le texte
   }
   
+  // retourne le texte de l'étiquette (pour savoir c'est quel item)
   String getEtiquette() {
-    return etiquette;
+    return etiquette;      // retourne un string
   }
 }

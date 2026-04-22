@@ -1,11 +1,13 @@
 class sonEquipe {
-  // variables
-  float x;
-  float y;
-  float w;
-  PImage icon;
-  String name;
   
+  // VARIABLES
+  float x;                 //position en x
+  float y;                 //position en y
+  float w;                 //largeur + hauteur
+  PImage icon;             // image du perso
+  String name;             //texte qui s'affiche
+  
+  // CONSTRUCTEUR
   sonEquipe(float ax, float ay, float aw, PImage aIcon, String aName) {
     x = ax;
     y = ay;
@@ -14,7 +16,7 @@ class sonEquipe {
     name = aName;
   }
   
-  // 3. MÉTHODE — afficher le bouton
+  // FONCTIONS 
   void afficher() {
     noStroke();
     fill(0);

@@ -1,13 +1,13 @@
 class buildEmmett {
-  // variables
-  float x;
-  float y;
-  float w;
-  float h;
-  PImage bodyPart;
   
+  // VARIABLES
+  float x;                 //position en x
+  float y;                 //position en y
+  float w;                 //largeur
+  float h;                 //hauteur
+  PImage bodyPart;         // images du corps d'Emmett
   
-  
+  // CONSTRUCTEUR
   buildEmmett(float ax, float ay, float aw, float ah, PImage aBodyPart) {
     x = ax;
     y = ay;
@@ -16,6 +16,7 @@ class buildEmmett {
     bodyPart = aBodyPart;
   }
   
+  // FONCTIONS 
   void afficher() {
     noStroke();
     image(bodyPart, x, y, w, h);
