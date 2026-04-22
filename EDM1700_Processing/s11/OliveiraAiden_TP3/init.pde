@@ -1,21 +1,9 @@
+// INITIALISATION - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void init() {
-  /*
-      list of bitches
-   Bebop? (deadlock)
-   Robot Giant from that one show
-   
-   random fights (not characters)
-   rats
-   birds
-   kevin
-   
-   Placeholders:
-   Rem
-   RemAscend
-   RemSilly
-   RemBonks
-   Dynamo
-   */
+  fontTitre = createFont("aAtmospheric.ttf", 128);
+  fontGen = createFont("SonicSaberPersonalUse-Regular.ttf", 128);
+  
+  
 
   isLaFin = false;
   isWin = false;
@@ -26,6 +14,8 @@ void init() {
   team[3] = null;
   
   background = loadImage("background.png");
+  bgMenu = loadImage("MainMenu.png");
+  bgBadEnd = loadImage("BadEnding.png");
 
   // TEST PLACEHOLDER INFO (dans un tableau?)
   JSONArray Characters = loadJSONArray("./json/characters.json");
@@ -35,7 +25,6 @@ void init() {
   
   Lexie = loadImage("lexie.png");
 
-  placeholder5 = loadImage("remviolence.png");
 
   EmmettBlueprint = loadImage("EmmettFullBody.png");
   EmmettHead = loadImage("EmmettHead.png");
@@ -45,10 +34,6 @@ void init() {
   EmmettLLeg = loadImage("EmmettLLeg.png");
   EmmettRLeg = loadImage("EmmettRLeg.png");
   
-  objBingBong = loadImage("obj_bingBong.png");
-  objShovel = loadImage("obj_shovel.png");
-  objStone = loadImage("obj_thunderStone.png");
-  objTrophy = loadImage("obj_trophyCollector.png");
 
 
   if (txtSkillTeam1 == null) {
@@ -106,6 +91,7 @@ void init() {
   txtHpEnemy = currentHpEnemy + "/" + hpEnemy;
 }
 
+// RELOAD - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void reload() {
   isLexieDead = false;
   isTeam1Dead = false;
@@ -140,9 +126,5 @@ void reload() {
   Teammate3Skill = new btnAttacks(width*0.86, height*0.585, 170, 50, txtSkillTeam3, Team3Skill + " DMG");
   Teammate3Ult = new btnAttacks(width*0.86, height*0.66, 170, 50, txtUltTeam3, Team3Ult + " DMG");
   currentHpTeammate3 = hpTeammate3;
-  
-  hpLexie += bonusHealth;
-  hpTeammate1 += bonusHealth;
-  hpTeammate2 += bonusHealth;
-  hpTeammate3 += bonusHealth;
+
 }

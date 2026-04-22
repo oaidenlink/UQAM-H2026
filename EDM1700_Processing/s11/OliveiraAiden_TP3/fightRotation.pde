@@ -1,3 +1,4 @@
+// ROTATION DU COMBAT - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void fightRotation() {
 
   if (fightRotationNb <= teamMember) {
@@ -96,6 +97,7 @@ void fightRotation() {
   }
 }
 
+// CHANGER L'AFFICHAGE DU TEXTE - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void changerTexteFight(boolean isAlly, String currentChara, String victime, String nomSkill) {
   if (isAlly == true) {
     texteDeFight = currentChara + " utilise " + nomSkill + " sur " + victime;

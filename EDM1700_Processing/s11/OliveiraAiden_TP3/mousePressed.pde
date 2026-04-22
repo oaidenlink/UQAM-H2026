@@ -1,3 +1,4 @@
+// QUAND LE BOUTON EST CLIQUÉ - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void mousePressed() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom); 
@@ -7,7 +8,7 @@ void mousePressed() {
   }
   
   //si le bouton est cliqué
-  if (ajouter.estClique() && newTeammates == true && isChoosing == true && selectChara.getBoolean("isRat") == false) {
+  if (ajouter.estClique() && newTeammates == true && isChoosing == true) {
     
     if (ajouter.getEtiquette() == "Ajouter à l'équipe?") {
 
@@ -73,7 +74,7 @@ void mousePressed() {
     reload();
     newEnemy();
     
-  } else if (selectChara.getBoolean("isRat") == true || selectChara.getBoolean("isGranny") == true) {
+  } else if (selectChara.getBoolean("isGranny") == true) {
     
     if (currentHpEnemy <= 0) {
       fightRotationNb = 0;
@@ -82,15 +83,6 @@ void mousePressed() {
       reload();
       newEnemy();
     }
-  }
-  
-  if (laFin.estClique() && isLaFin == true) {
-    println("JE SUIS LA FIN!! J'AI ÉTÉ CLIQUÉ");
-    isWin = false;
-    isLaFin = false;
-    opacity = 0;
-    reload();
-    init();
   }
 
 
@@ -151,13 +143,15 @@ void mousePressed() {
   
 }
 
+// CHOISIR L'ATTAQUE - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void choisirAtk(boolean changerTxt, String name, String enemyName, String nameAtk) {
-  turnCurrentFight(turnCurrentAtk+bonusDmg, turnCurrentDmg);
+  turnCurrentFight(turnCurrentAtk, turnCurrentDmg);
   changerTexteFight(changerTxt, name, enemyName, nameAtk);
   displayMessage = true;
   startTime = millis();
 }
 
+// TOUR DE COMBAT ACTUEL - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void turnCurrentFight(String atkName, int atkDmg) {
   println("atkName: " + atkName + " + atkDmg: " + atkDmg);
   if (isEnnemyAtk == false && isEnemyDead == false) {

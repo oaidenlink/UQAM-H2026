@@ -1,3 +1,4 @@
+// GESTION DE LA VIE - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void manageHP() {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom); // test
@@ -27,21 +28,15 @@ void manageHP() {
   }
 
   if (currentHpEnemy <= 0) {
-    
+
     texteDeFightEnemy = selectChara.getString("Death");
-    
-    if (selectChara.getBoolean("isRat") == true) {
-      isChoosing = false;
-      isObjClaimed = true;
-      appelleObjets();
-    } else {
-      isChoosing = true;
-    }
-    
+
+    isChoosing = true;
+
     if (selectChara.getBoolean("isGranny") == true) {
       Enemy = Granny;
     }
-    
+
     isEnemyDead = true;
     txtHpEnemy = "";
   }
@@ -58,7 +53,7 @@ void manageHP() {
   if (currentHpTeammate3 <= 0 && teamMember >= 4) {
     isTeam3Dead = true;
   }
-  
+
   if (isLaFin == true || isWin == true) {
     txtHpLexie = "";
     txtHpTeam1 = "";
@@ -66,5 +61,4 @@ void manageHP() {
     txtHpTeam3 = "";
     txtHpEnemy = "";
   }
-  
 }

@@ -21,7 +21,7 @@ class afficherFightTxt {
     textAlign(CENTER);
     
     fill(255); //couleur du texte
-    textSize(36);
+    textSize(32);
     text(etiquette, x-3, y, w, h);
     text(etiquette, x+3, y, w, h);
     text(etiquette, x, y-3, w, h);

@@ -1,3 +1,4 @@
+// ATTAQUES DE L'ENNEMI - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void ennemyAttacks() {
   int nbAtk = int(random(1, 4));
 
@@ -36,6 +37,7 @@ void ennemyAttacks() {
   }
 }
 
+// FONCTION D'ATTAQUE SUR LE TEAMMATE - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void attackTeammate(int dmg, String name) {
   JSONArray Characters = loadJSONArray("./json/characters.json");
   JSONObject selectChara = Characters.getJSONObject(numRandom);
@@ -57,6 +59,7 @@ void attackTeammate(int dmg, String name) {
   
 }
 
+// NOUVEL ENNEMI - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void newEnemy() {
   println("hello");
   JSONArray Characters = loadJSONArray("./json/characters.json");

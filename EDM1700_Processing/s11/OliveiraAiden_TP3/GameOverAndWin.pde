@@ -1,14 +1,14 @@
+// GAME OVER - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void GameOver() {
-  if (isLaFin == true) {
-    fill(0, 0, 0, opacity);
-    noStroke();
-    rect(0, 0, width, height);
+  if (isLaFin == true) {                               // si vous perdez le jeu...
+    noStroke();                                        // enleve la stroke
+    image(bgBadEnd, 0, 0, width, height);              
     fill(255);
     text("Fin de la partie...", width/2, height/2);
-    laFin.afficher();
   } 
 }
 
+// WIN - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void Win() {
   if (isWin == true) {
     fill(0, 0, 0, opacity);

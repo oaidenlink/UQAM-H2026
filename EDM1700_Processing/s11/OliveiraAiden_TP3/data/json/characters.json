@@ -140,20 +140,6 @@
 		"isGranny" : false
 	},
 	{
-		"Name" : "The Rat",
-		"Death" : "The Rat is exploding! (The next enemy will receive damage upon entering)",
-		"Img" : "rat.png",
-		"ImgKaboom" : "granny_kaboom.jpg",
-		"MaxHp" : 7,
-		"Hp" : 7,
-		"Atk" : 2,
-		"Skill" : "AAAH",
-		"Ult" : "EEK",
-		"isClaimable" : false,
-		"isRat" : true,
-		"isGranny" : false
-	},
-	{
 		"Name" : "Granny",
 		"Death" : "Rest in peace my granny she got hit by a bazooka",
 		"Img" : "Granny.jpg",
