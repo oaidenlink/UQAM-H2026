@@ -18,8 +18,8 @@ class buildEmmett {
   
   // FONCTIONS 
   void afficher() {
-    noStroke();
-    image(bodyPart, x, y, w, h);
+    noStroke();                    // enlève la bordure
+    image(bodyPart, x, y, w, h);   // affiche l'image
   }  
   
 }

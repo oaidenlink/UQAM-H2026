@@ -17,26 +17,24 @@ class sonEquipe {
   }
   
   // FONCTIONS 
+  // affiche la boite du personnage
   void afficher() {
-    noStroke();
-    fill(0);
-    rect(x, y, w, w);
-    image(icon, x, y, w, w);
+    noStroke();                // enlève la bordure
+    fill(0);                   // couleur noire
+    rect(x, y, w, w);          // affiche un carré
+    image(icon, x, y, w, w);   // affiche l'image
   }
   
-  //void attackBox() {
-  //  attackBox(x, height*0.46, w+100, w);
-  //}
-  //btnAttacks atk1
+  // affiche la bite d'attaque quand c'est son tour
   void attackBox() {
-    fill(255);
-    stroke(0);
-    rect(x, height*0.46, w+100, w);
-    //atk1.afficher();
+    fill(255);                        // couleur blanc
+    stroke(0);                        // bordure noire
+    rect(x, height*0.46, w+100, w);   // rectangle de la boite
   }
   
+  // retourne le nom donné
   String getNom() {
-    return name;
+    return name;    // retourne un string
   }
   
   

@@ -27,26 +27,24 @@ class btnAttacks {
     textAlign(CENTER);                 //aligne texte au centre
     textSize(16);                      //taille du texte
     text(etiquette, x+w/2, y+h/2);     //afficher le texte
-
-    fill(0);
-    textSize(27);
-    text(atkDmg, x-140, y+15, w, h);
-    // ?? ta mere
+    fill(0);                           // couoleur noire
+    textSize(27);                      // change la taille du texte
+    text(atkDmg, x-140, y+15, w, h);   // affiche le texte
   }
 
 
-  // 4. MÉTHODE — est-ce que la souris est en train de cliquer sur le bouton ?
+  // quand on clique le btn
   boolean estClique() {
-    //detection de collision avec le bouton
     if ( mouseX >= x && mouseX <= x + w &&
-      mouseY >= y && mouseY <= y + h ) {
-      return true;
+      mouseY >= y && mouseY <= y + h ) {  //detection de collision avec le bouton
+      return true;                        // oui le btn est cliqué
     } else {
-      return false;
+      return false;                       // non le btn n'est pas cliqué
     }
   }
 
+  // retourne le texte de l'étiquette (pour savoir c'est quel item)
   String getEtiquette() {
-    return etiquette;
+    return etiquette;      // retourne un string
   }
 }
