@@ -1,11 +1,10 @@
 /*
  * Titre: EDM1700 Travail final
  * Auteur.trice: Aiden Oliveira
- * Version: 1.0
+ * Version: 2.0
  * Instructions: Commencez le jeu en appuyant sur le bouton "jouer" en haut,
                  puis aidez Lexie a réparer son ami robot, Emmett!!
- * Bugs: IL MANQUE DES COMMENTAIRES!!!! DÉSOLÉ LA VIE C'EST PAS FACILE ;-;
-         NE PAS SPEEDRUN LE JEU!! Ça fait crash le jeu. En plus, pour une 
+ * Bugs: NE PAS SPEEDRUN LE JEU!! Ça fait crash le jeu. En plus, pour une 
          raison que j'ignore, le jeu décide de ne plus loader les images et 
          tout meurt. Je n'ai jamais trouver la source du bug, car a chaque 
          fois le message d'erreur est différent et l'emplacement de l'erreur 
@@ -19,10 +18,16 @@ JSONArray characters;                            // variable pour le json des pe
 sonEquipe[] team = new sonEquipe[4];             // tableau pour l'équipe de Lexie
 buildEmmett[] pieceEmmett = new buildEmmett[6];  // tableau pour les pièces d'Emmett
 
+  // ANIMATION
+int numFrames = 18;                            // nb de frames dans l'anim
+int currentFrame = 0;                          // frame actuelle
+PImage[] EmmettAnim = new PImage[numFrames];   // tableau pour contenir les images
+
   // IMAGES
 PImage background;      // variable pour l'image de fond
 PImage bgMenu;          // variable pour l'image de Menu
 PImage bgBadEnd;        // variable pour l'image de la mauvaise fin
+PImage bgGoodEnd;        // variable pour l'image de la mauvaise fin
 
 PImage Lexie;           // variable pour l'image de Lexie
 
@@ -131,8 +136,6 @@ int turnCurrentDmg;        // nombre de dégat actuel
 int numRandom;             // nombre aléatoire pour les personnages
 int emmettNbPieces = 1;    // nombre de pièces d'Emmett 
 
-float opacity = 0;    // opacité du fond de la fin
-
 String turnCurrentAtk;    // texte attaque actuelle
 
 boolean isChoosing = false;        // bool pour choisir si on veux que l'ennemi rejoins notre équipe
@@ -156,18 +159,37 @@ final int DISPLAY_DURATION = 3000; // in milliseconds = 3s
 // SETUP - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void setup() {
   size(1400, 800);  // taille du canvas
+  pixelDensity(1);  // empêche le bug des fps qui baisse
 
   newEnemy();  // ajoute un nouvel ennemi
   init();      // initialise le projet
 
   couleurBtn = #9BD8D0;  // couleur du fond, dont je ne me sert pas, mais le projet crash quand je le supprime.... 
-
   team[0] = new sonEquipe(width*0.03, height*0.72, 200.0, MainCharacter, "Lexie");        // création de l'équipe de Lexie (avec Lexie comme premier perso)
   pieceEmmett[0] = new buildEmmett(100, 100, 200, 400, EmmettHead);                       // première pièce d'Emmett acquise: sa tête
   
   ajouter = new btnAttacks(width*0.3, height/2-200, 170, 50, "Ajouter à l'équipe?", "");  // bouton pour ajouter a l'équipe
   refuser = new btnAttacks(width*0.7, height/2-200, 150, 50, "Démonter!!", "");           // bouton pour démonter l'ennmi
   btnMenu = new btnAttacks(width/2, height*0.9, 150, 50, "JOUER!", "");                   // affiche le bouton du menu principal
+  
+  EmmettAnim[0] = loadImage("AnimEmmet_1.png");  // load l'image de l'animation
+  EmmettAnim[1] = loadImage("AnimEmmet_1.png");  // load l'image de l'animation
+  EmmettAnim[2] = loadImage("AnimEmmet_1.png");  // load l'image de l'animation
+  EmmettAnim[3] = loadImage("AnimEmmet_2.png");  // load l'image de l'animation
+  EmmettAnim[4] = loadImage("AnimEmmet_2.png");  // load l'image de l'animation
+  EmmettAnim[5] = loadImage("AnimEmmet_2.png");  // load l'image de l'animation
+  EmmettAnim[6] = loadImage("AnimEmmet_3.png");  // load l'image de l'animation
+  EmmettAnim[7] = loadImage("AnimEmmet_3.png");  // load l'image de l'animation
+  EmmettAnim[8] = loadImage("AnimEmmet_3.png");  // load l'image de l'animation
+  EmmettAnim[9] = loadImage("AnimEmmet_4.png");  // load l'image de l'animation
+  EmmettAnim[10] = loadImage("AnimEmmet_4.png");  // load l'image de l'animation
+  EmmettAnim[11] = loadImage("AnimEmmet_4.png");  // load l'image de l'animation
+  EmmettAnim[12] = loadImage("AnimEmmet_3.png");  // load l'image de l'animation
+  EmmettAnim[13] = loadImage("AnimEmmet_3.png");  // load l'image de l'animation
+  EmmettAnim[14] = loadImage("AnimEmmet_3.png");  // load l'image de l'animation
+  EmmettAnim[15] = loadImage("AnimEmmet_2.png");  // load l'image de l'animation
+  EmmettAnim[16] = loadImage("AnimEmmet_2.png");  // load l'image de l'animation
+  EmmettAnim[17] = loadImage("AnimEmmet_2.png");  // load l'image de l'animation
 }
 
 // DRAW - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -233,7 +255,6 @@ void draw() {
     // conditions pour ganger
     if (emmettNbPieces >= 6) {  // si on a les 6 morceau d'Emmett
       isWin = true;             // on gagne!
-      opacity = 255;            // affice le fond blanc
       Win();                    // appelle la fonction de win
     }
 

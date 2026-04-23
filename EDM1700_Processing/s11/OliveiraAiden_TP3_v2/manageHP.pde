@@ -1,16 +1,20 @@
 // GESTION DE LA VIE - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void manageHP() {
+  // load le fichier JSON
   JSONArray Characters = loadJSONArray("./json/characters.json");
-  JSONObject selectChara = Characters.getJSONObject(numRandom); // test
+  JSONObject selectChara = Characters.getJSONObject(numRandom);
 
+  // set la vie de Lexie et l'affiche
   afficherHpLexie = new afficherTexte(width*0.15, height-20, 100, 20, txtHpLexie);
   txtHpLexie = currentHpLexie + "/" + hpLexie;
   afficherHpLexie.afficheText();
 
+  // set la vie de l'ennemi et l'affiche
   afficherHpEnemy =  new afficherTexte(width/2, 100, 100, 20, txtHpEnemy);
   txtHpEnemy = currentHpEnemy + "/" + hpEnemy;
   afficherHpEnemy.afficheText();
 
+  // "boucle" if afin de montrer le texte de la vie des alliés selon le nb d'alliés
   if (teamMember >= 2) {
     afficherHpTeam1 = new afficherTexte(width*0.38, height-20, 100, 20, txtHpTeam1);
     txtHpTeam1 = currentHpTeammate1 + "/" + hpTeammate1;
@@ -27,20 +31,21 @@ void manageHP() {
     afficherHpTeam3.afficheText();
   }
 
+  // quoi faire si la vie de l'ennemi atteint 0
   if (currentHpEnemy <= 0) {
 
-    texteDeFightEnemy = selectChara.getString("Death");
-
-    isChoosing = true;
+    texteDeFightEnemy = selectChara.getString("Death");  // affiche le texte de mort des ennemis
+    isChoosing = true;                                   // permet de choisir si on veux démonter ou s'allier a l'ennemi
 
     if (selectChara.getBoolean("isGranny") == true) {
-      Enemy = Granny;
+      Enemy = Granny;    // affiche la Granny explosée (meme)
     }
 
-    isEnemyDead = true;
-    txtHpEnemy = "";
-  }
+    isEnemyDead = true;    // set l'ennemi a mort"
+    txtHpEnemy = "";       // enlève l'affichage de la vie de l'ennemi
+  }  
 
+  // set les conditions de mort des alliés
   if (currentHpLexie <= 0) {
     isLexieDead = true;
   }
@@ -54,6 +59,7 @@ void manageHP() {
     isTeam3Dead = true;
   }
 
+  // enlève l'affichage de la vie des persos si on a fini le jeu
   if (isLaFin == true || isWin == true) {
     txtHpLexie = "";
     txtHpTeam1 = "";

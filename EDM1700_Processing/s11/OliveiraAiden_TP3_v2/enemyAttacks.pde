@@ -43,7 +43,7 @@ void attackTeammate(int dmg, String name) {
   JSONObject selectChara = Characters.getJSONObject(numRandom);     // variable pour le json
   int random = int(random(0, teamMember));                          // fait un numéro random selon le nombre de persos dans la team
   
-  // serie de if afin de voir quel teammate se prendra le damage
+  // serie de if afin de voir quel teammate se prendra le damage selon un chiffre aléatoire
   if (random == 0) {
     currentHpLexie -= dmg;      // enleve la vie a Lexie
     changerTexteFight(false, selectChara.getString("Name"), team[0].getNom(), name);  // change le texte affiché
@@ -57,7 +57,6 @@ void attackTeammate(int dmg, String name) {
     currentHpTeammate3 -= dmg;  // enleve la vie au Teammate
     changerTexteFight(false, selectChara.getString("Name"), team[3].getNom(), name);  // change le texte affiché
   }
-  
 }
 
 // NOUVEL ENNEMI - - - - - - - - - - - - - - - - - - - - - - - - - - - -
