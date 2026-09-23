@@ -1,3 +1,8 @@
+/////////////////////////////////
+// EVALUATION 1 - EXERCICE 2
+// AIDEN OLIVEIRA OLIA87280306
+/////////////////////////////////
+
 const int pinLEDr = 27;
 const int pinLEDg = 14;
 const int pinLEDb = 12;
@@ -10,6 +15,7 @@ int valeurJoystickX;
 int valeurJoystickY;
 
 int valeurLEDb;
+int valeurLEDr;
 int valeurBright;
 
 bool btnState = 1;
@@ -21,31 +27,28 @@ void setup() {
   
   pinMode(pinLEDr, OUTPUT);
   pinMode(pinLEDb, OUTPUT);
+  pinMode(pinLEDg, OUTPUT);
 
   pinMode(pinJoystickBtn, INPUT);
   digitalWrite(pinLEDb, ledState);
   digitalWrite(pinLEDr, ledState);
+  digitalWrite(pinLEDg, 0);
 }
 
 void loop() {
-    // joystick rouge à bleu
-  valeurJoystickX = analogRead(pinJoystickX);
-  // Serial.println("value X: " + valeurJoystickX); 
-  valeurLEDb = map(valeurJoystickX, 0, 4095, 0, 255);
-  analogWrite(pinLEDb, valeurLEDb * ledState);
-  analogWrite(pinLEDr, (255-valeurLEDb) * ledState);
-  delay(20);
-
     // joystick intensité lumineuse
   valeurJoystickY = analogRead(pinJoystickY);
-  valeurBright = map(valeurJoystickY, 0, 4095, 0, 100);
+  valeurBright = map(valeurJoystickY, 0, 4095, 0, 255);
 
-  int brightness = map(valeurLEDb * valeurBright, 0, 25500, 0, 255);
-
-  analogWrite(pinLEDb, brightness);
-  analogWrite(pinLEDr, brightness);
-
-  Serial.println(brightness);  
+    // joystick rouge à bleu
+  valeurJoystickX = analogRead(pinJoystickX);
+  valeurLEDb = map(valeurJoystickX, 0, 4095, 0, valeurBright);
+  valeurLEDr = map(valeurJoystickX, 0, 4095, valeurBright, 0);
+  analogWrite(pinLEDb, valeurLEDb * ledState);
+  analogWrite(pinLEDr, valeurLEDr * ledState);
+  analogWrite(pinLEDg, 0);
+  delay(20);
+  // merci Marianne pour le coup de main
 
     // joystick bouton on et off
   btnState = digitalRead(pinJoystickBtn);
